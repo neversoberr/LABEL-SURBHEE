@@ -3,452 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frontend Design — Skill N°001 · LABEL-SURBHEE</title>
+<title>Label Surbhee | Luxury Indian Fashion, Lehengas &amp; Jewellery</title>
+<meta name="description" content="Bridal lehengas, festive couture, sarees and heirloom jewellery by Label Surbhee — a Mumbai atelier. Deep maroon, antique gold, made to be remembered. Free shipping over ₹1,999.">
+<meta name="theme-color" content="#2b0811">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://labelsurbhee.com/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Label Surbhee">
+<meta property="og:title" content="Label Surbhee | Luxury Indian Fashion, Lehengas & Jewellery">
+<meta property="og:description" content="Bridal lehengas, festive couture and heirloom jewellery — cut and embroidered by hand in our Bandra West atelier.">
+<meta property="og:image" content="img/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- SEO / analytics placeholders: add your Google Search Console verification,
+     Google Analytics 4 (G-XXXXXXX) and Meta Pixel IDs here before launch. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ClothingStore",
+  "name": "Label Surbhee",
+  "description": "Luxury Indian fashion house — bridal lehengas, festive couture and heirloom jewellery.",
+  "url": "https://labelsurbhee.com/",
+  "telephone": "+91-98200-12345",
+  "email": "hello@labelsurbhee.com",
+  "address": { "@type": "PostalAddress", "streetAddress": "Atelier 7, Linking Road, Bandra West", "addressLocality": "Mumbai", "addressRegion": "Maharashtra", "postalCode": "400050", "addressCountry": "IN" },
+  "sameAs": ["https://instagram.com/labelsurbhee", "https://facebook.com/labelsurbhee"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --paper:#f3efe4;
-    --paper-2:#ebe6d7;
-    --ink:#191510;
-    --ink-soft:#6e6455;
-    --accent:#e0431c;
-    --accent-deep:#b33212;
-    --line:rgba(25,21,16,.22);
-    --line-soft:rgba(25,21,16,.12);
-    --mono:'IBM Plex Mono',monospace;
-    --disp:'Fraunces',serif;
-    --body:'Newsreader',serif;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--body);
-    font-size:18px;
-    line-height:1.55;
-    overflow-x:hidden;
-    /* faint vertical ledger lines */
-    background-image:repeating-linear-gradient(90deg,transparent 0 119px,var(--line-soft) 119px 120px);
-  }
-  ::selection{background:var(--accent);color:var(--paper)}
-  ::-webkit-scrollbar{width:10px}
-  ::-webkit-scrollbar-track{background:var(--paper-2)}
-  ::-webkit-scrollbar-thumb{background:var(--ink);border:2px solid var(--paper-2)}
-
-  /* ---- grain overlay ---- */
-  .grain{
-    position:fixed;inset:0;z-index:60;pointer-events:none;
-    opacity:.055;mix-blend-mode:multiply;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* ---- masthead ---- */
-  .masthead{
-    display:flex;align-items:baseline;justify-content:space-between;gap:16px;
-    padding:18px 4vw 14px;
-    border-bottom:1px solid var(--ink);
-    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    animation:fadeDown .7s .05s both;
-  }
-  .masthead b{font-weight:600}
-  .masthead .mid{color:var(--ink-soft)}
-  .masthead .no{color:var(--accent);font-weight:600}
-
-  /* ---- ticker ---- */
-  .ticker{
-    background:var(--ink);color:var(--paper);
-    overflow:hidden;white-space:nowrap;
-    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-    padding:9px 0;
-    animation:fadeDown .7s .12s both;
-  }
-  .ticker-track{display:inline-block;animation:tick 28s linear infinite}
-  .ticker-track span{padding:0 1.4em}
-  .ticker-track em{font-style:normal;color:var(--accent)}
-  @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-  /* ---- hero ---- */
-  .hero{
-    position:relative;
-    display:grid;grid-template-columns:1fr minmax(240px,340px);
-    gap:4vw;
-    padding:7vh 4vw 9vh;
-    min-height:62vh;
-  }
-  .hero-left{align-self:center;position:relative}
-  .kicker{
-    font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--accent-deep);margin-bottom:2.2vh;
-    animation:fadeUp .7s .2s both;
-  }
-  .kicker::before{content:"";display:inline-block;width:34px;height:2px;background:var(--accent);vertical-align:middle;margin-right:14px}
-  h1{
-    font-family:var(--disp);
-    font-weight:900;
-    font-size:clamp(58px,10.5vw,148px);
-    line-height:.92;
-    letter-spacing:-.015em;
-    text-transform:uppercase;
-  }
-  h1 .l{display:block;overflow:hidden}
-  h1 .l i{
-    display:block;font-style:italic;font-weight:400;
-    animation:rise 1s cubic-bezier(.19,1,.22,1) both;
-  }
-  h1 .l:nth-child(1) i{animation-delay:.32s}
-  h1 .l:nth-child(2) i{animation-delay:.44s}
-  h1 .l:nth-child(3) i{animation-delay:.56s}
-  h1 .accent-word{color:var(--accent)}
-  @keyframes rise{from{transform:translateY(112%)}to{transform:translateY(0)}}
-  .hero-sub{
-    max-width:46ch;margin-top:3.4vh;
-    font-size:clamp(17px,1.5vw,21px);font-weight:400;font-style:italic;
-    color:var(--ink-soft);
-    animation:fadeUp .8s .8s both;
-  }
-  .hero-sub strong{font-style:normal;color:var(--ink);font-weight:600}
-
-  /* stamp */
-  .stamp{
-    position:absolute;right:-1.5vw;top:-4vh;
-    width:158px;height:158px;
-    display:grid;place-items:center;text-align:center;
-    border:3px solid var(--accent);
-    outline:1px solid var(--accent);
-    outline-offset:5px;
-    color:var(--accent);
-    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
-    transform:rotate(-9deg);
-    mask-image:radial-gradient(circle at 30% 35%,#000 62%,rgba(0,0,0,.55));
-    animation:stamp .55s 1.15s cubic-bezier(.34,1.4,.5,1) both;
-  }
-  .stamp div{line-height:1.9}
-  .stamp b{display:block;font-size:15px;letter-spacing:.3em}
-  @keyframes stamp{
-    0%{opacity:0;transform:rotate(-9deg) scale(2.1)}
-    70%{opacity:1;transform:rotate(-9deg) scale(.94)}
-    100%{opacity:1;transform:rotate(-9deg) scale(1)}
-  }
-
-  /* hero meta card */
-  .meta{
-    align-self:center;
-    border:1px solid var(--ink);
-    background:var(--paper-2);
-    font-family:var(--mono);font-size:12px;
-    box-shadow:6px 6px 0 rgba(25,21,16,.9);
-    animation:fadeUp .8s .95s both;
-  }
-  .meta-head{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:10px 14px;border-bottom:1px solid var(--ink);
-    font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:11px;
-  }
-  .meta-head .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:blink 1.6s ease-in-out infinite}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-  .meta dl{display:grid;grid-template-columns:auto 1fr}
-  .meta dt,.meta dd{padding:10px 14px;border-bottom:1px dashed var(--line);line-height:1.35}
-  .meta dt{color:var(--ink-soft);letter-spacing:.1em;text-transform:uppercase;font-size:10px;align-self:center}
-  .meta dd{letter-spacing:.02em;word-break:break-all}
-  .meta dl > *:nth-last-child(-n+2){border-bottom:none}
-  .meta .val-accent{color:var(--accent-deep);font-weight:600}
-
-  /* ---- sections ---- */
-  .sections{padding:0 4vw 6vh}
-  .sec{
-    display:grid;grid-template-columns:88px 1fr;
-    gap:2.5vw;
-    padding:4.2vh 0;
-    border-top:1px solid var(--ink);
-    opacity:0;transform:translateY(26px);
-    transition:opacity .8s cubic-bezier(.19,1,.22,1),transform .8s cubic-bezier(.19,1,.22,1);
-  }
-  .sec.in{opacity:1;transform:none}
-  .sec-num{
-    font-family:var(--mono);font-size:13px;font-weight:600;letter-spacing:.12em;
-    color:var(--ink-soft);padding-top:6px;
-    transition:color .3s;
-  }
-  .sec:hover .sec-num{color:var(--accent)}
-  .sec-title{
-    font-family:var(--disp);font-weight:600;font-size:clamp(26px,3.4vw,42px);
-    line-height:1.05;letter-spacing:-.01em;margin-bottom:1.1vh;
-  }
-  .sec-title::after{
-    content:"";display:block;height:3px;width:0;background:var(--accent);
-    margin-top:10px;transition:width .5s cubic-bezier(.19,1,.22,1);
-  }
-  .sec:hover .sec-title::after{width:64px}
-  .sec-body{max-width:64ch;font-size:clamp(16px,1.35vw,19px);color:var(--ink)}
-  .sec-body em{font-style:italic}
-  .sec-body .no{
-    background:var(--ink);color:var(--paper);
-    font-family:var(--mono);font-size:.78em;padding:2px 7px;white-space:nowrap;
-    letter-spacing:.05em;
-  }
-  .sec-body .flag{color:var(--accent-deep);font-weight:600;font-style:normal}
-
-  /* laws grid inside section 04 */
-  .laws{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:22px;margin-top:2.4vh;
-  }
-  .law{
-    border-top:2px solid var(--ink);padding-top:12px;
-    transition:transform .35s cubic-bezier(.19,1,.22,1),background .35s;
-  }
-  .law:hover{transform:translateY(-5px);background:rgba(25,21,16,.04)}
-  .law h3{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:8px}
-  .law p{font-size:15.5px;color:var(--ink-soft);line-height:1.5}
-
-  /* install block */
-  .code-chip{
-    display:inline-block;margin-top:2vh;
-    background:var(--ink);color:var(--paper);
-    font-family:var(--mono);font-size:13px;letter-spacing:.04em;
-    padding:12px 18px;
-    box-shadow:5px 5px 0 var(--accent);
-    transition:box-shadow .3s,transform .3s;
-  }
-  .code-chip:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--accent)}
-  .code-chip b{color:var(--accent);font-weight:600}
-
-  /* ---- footer ---- */
-  footer{
-    background:var(--ink);color:var(--paper);
-    margin-top:4vh;
-    display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;
-    padding:26px 4vw;
-    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-  }
-  footer .dim{color:rgba(243,239,228,.45)}
-  .deerflow-footer{
-    display:inline-flex;align-items:center;gap:10px;
-    color:rgba(243,239,228,.6);text-decoration:none;
-    transition:color .3s;
-  }
-  .deerflow-footer:hover{color:var(--accent)}
-  .deerflow-footer .line{display:inline-block;width:26px;height:1px;background:currentColor}
-  .deerflow-footer .star{color:var(--accent)}
-
-  /* floating corner badge — the signature */
-  .deerflow-badge{
-    position:fixed;right:18px;bottom:18px;z-index:70;
-    display:inline-flex;align-items:center;gap:7px;
-    background:var(--paper);color:var(--ink);
-    border:1px solid var(--ink);
-    font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
-    padding:8px 12px;text-decoration:none;
-    box-shadow:3px 3px 0 rgba(25,21,16,.85);
-    transition:background .25s,color .25s,transform .25s,box-shadow .25s;
-    animation:badgeIn .6s 1.6s both;
-  }
-  .deerflow-badge .star{color:var(--accent);transition:transform .4s}
-  .deerflow-badge:hover{background:var(--ink);color:var(--paper);transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--accent)}
-  .deerflow-badge:hover .star{transform:rotate(180deg) scale(1.15)}
-  @keyframes badgeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-
-  @keyframes fadeDown{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-
-  @media (max-width:860px){
-    .hero{grid-template-columns:1fr;min-height:auto}
-    .stamp{position:static;margin-top:4vh;transform:rotate(-4deg);animation-name:stampM}
-    @keyframes stampM{
-      0%{opacity:0;transform:rotate(-4deg) scale(1.9)}
-      70%{opacity:1;transform:rotate(-4deg) scale(.96)}
-      100%{opacity:1;transform:rotate(-4deg) scale(1)}
-    }
-    .sec{grid-template-columns:1fr;gap:10px}
-    .masthead{flex-wrap:wrap;row-gap:6px}
-    .masthead .mid{display:none}
-  }
-  @media (prefers-reduced-motion:reduce){
-    *,*::before,*::after{animation-duration:.001s !important;animation-delay:0s !important;transition:none !important}
-    html{scroll-behavior:auto}
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<a class="skip" href="#view">Skip to content</a>
 <div class="grain" aria-hidden="true"></div>
 
-<header class="masthead">
-  <b>Field Manual — For Distinctive Interfaces</b>
-  <span class="mid">Label-Surbhee · Skill Repository</span>
-  <span class="no">Skill N° 001</span>
+<div class="announce">✦ Free shipping on orders over <b>₹1,999</b> &nbsp;✦&nbsp; COD available across India &nbsp;✦&nbsp; 7-day returns &nbsp;✦&nbsp; Track every step on <b>WhatsApp</b></div>
+
+<header class="site">
+  <div class="topbar">
+    <a href="#/track">Track Order</a>
+    <div class="tb-r">
+      <a href="#/shipping">Shipping</a>
+      <a href="#/returns">Returns &amp; Exchange</a>
+      <a href="#/faq">FAQ</a>
+      <a href="#/account">My Account</a>
+    </div>
+  </div>
+  <div class="hd-main">
+    <button class="burger" data-action="mm-open" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+    </button>
+    <a class="logo" href="#/" aria-label="Label Surbhee home">LABEL <span class="dia">✦</span> SURBHEE<small>House of Maroon &amp; Gold</small></a>
+    <nav class="main" aria-label="Main navigation">
+      <ul>
+        <li><a class="nav-link" href="#/">Home</a></li>
+        <li><a class="nav-link" href="#/new">New Arrivals</a></li>
+        <li class="has-mega" data-cat="clothing"><a class="nav-link" href="#/shop/clothing">Clothing <span class="chev">▾</span></a><div class="mega" aria-hidden="false"></div></li>
+        <li class="has-mega" data-cat="lehengas"><a class="nav-link" href="#/shop/lehengas">Lehengas <span class="chev">▾</span></a><div class="mega"></div></li>
+        <li class="has-mega" data-cat="jewellery"><a class="nav-link" href="#/shop/jewellery">Jewellery <span class="chev">▾</span></a><div class="mega"></div></li>
+        <li class="has-mega" data-cat="collections"><a class="nav-link" href="#/collections">Collections <span class="chev">▾</span></a><div class="mega"></div></li>
+        <li><a class="nav-link" href="#/sale" style="color:var(--gold)">Sale</a></li>
+      </ul>
+    </nav>
+    <div class="hd-icons">
+      <button data-action="search" aria-label="Search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+      <a href="#/account" aria-label="My account"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg></a>
+      <a href="#/wishlist" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 20s-7-4.6-9.3-9C1 7.5 3 4.5 6.2 4.5c2 0 3.4 1.1 4.2 2.4l1.6 2.4 1.6-2.4c.8-1.3 2.2-2.4 4.2-2.4C21 4.5 23 7.5 21.3 11 19 15.4 12 20 12 20z"/></svg><span class="cart-count" id="wish-count" style="display:none"></span></a>
+      <button data-action="cart" aria-label="Shopping bag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 8h12l1 13H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" id="cart-count" style="display:none"></span></button>
+    </div>
+  </div>
 </header>
 
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track">
-    <span>No Inter <em>✳</em> No Roboto <em>✳</em> No Arial <em>✳</em> No purple gradients on white <em>✳</em> No centered hero triplets <em>✳</em> No cookie-cutter cards <em>✳</em> Commit to a direction <em>✳</em></span>
-    <span>No Inter <em>✳</em> No Roboto <em>✳</em> No Arial <em>✳</em> No purple gradients on white <em>✳</em> No centered hero triplets <em>✳</em> No cookie-cutter cards <em>✳</em> Commit to a direction <em>✳</em></span>
+<!-- mobile menu -->
+<div class="mmenu" id="mmenu" aria-label="Mobile menu">
+  <div class="mm-head">
+    <span style="font-family:var(--disp);letter-spacing:.4em;color:var(--gold);font-size:16px">LABEL SURBHEE</span>
+    <button class="mm-close" data-action="mm-close" aria-label="Close menu">✕</button>
+  </div>
+  <nav id="mm-subs"></nav>
+  <div style="padding:6px 5vw 44px;display:flex;flex-direction:column;gap:12px">
+    <a class="btn btn-solid" href="#/new"><span>New Arrivals</span></a>
+    <a class="btn" href="#/sale"><span>The Sale</span></a>
+    <a class="btn btn-ghost" href="#/account"><span>My Account</span></a>
+    <a class="btn btn-ghost" href="#/track"><span>Track Order</span></a>
   </div>
 </div>
 
-<main>
-  <section class="hero">
-    <div class="hero-left">
-      <p class="kicker">Installation complete — now governing every build</p>
-      <h1>
-        <span class="l"><i>Front-End</i></span>
-        <span class="l"><i>Design <span class="accent-word">Skill</span></i></span>
-      </h1>
-      <p class="hero-sub">
-        A field manual for interfaces that refuse to look generated.
-        <strong>Distinctive, production-grade, and opinionated</strong> —
-        committed to this repository and ready to steer every page it touches.
-      </p>
+<!-- search -->
+<div class="overlay" id="search-ov" role="dialog" aria-label="Search">
+  <button class="x" data-action="close-search" aria-label="Close search">✕</button>
+  <div class="srch"><input id="srch-in" placeholder="Search the house — try “bridal”" aria-label="Search products"></div>
+  <div class="srch-results" id="srch-res"></div>
+</div>
+
+<!-- cart drawer -->
+<aside class="drawer" id="drawer" aria-label="Shopping bag">
+  <div class="dr-head"><h3>Your Bag</h3><button data-action="close-drawer" style="font-size:20px;color:var(--gold)" aria-label="Close bag">✕</button></div>
+  <div class="dr-body" id="dr-body"></div>
+  <div class="dr-foot" id="dr-foot"></div>
+</aside>
+
+<!-- modal -->
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<main id="view" aria-live="polite"></main>
+
+<footer class="site">
+  <div class="f-top">
+    <div class="f-brand">
+      <a class="logo" href="#/" style="font-size:19px">LABEL <span class="dia">✦</span> SURBHEE<small>House of Maroon &amp; Gold</small></a>
+      <p>Bridal lehengas, festive couture and heirloom jewellery — cut and embroidered by hand in our Bandra West atelier.</p>
+      <div class="f-social">
+        <a href="https://instagram.com/labelsurbhee" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        <a href="https://facebook.com/labelsurbhee" target="_blank" rel="noopener" aria-label="Facebook">FB</a>
+        <a href="https://wa.me/919820012345" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+      </div>
+      <div class="f-pay"><span>UPI</span><span>Visa</span><span>Mastercard</span><span>RuPay</span><span>COD</span></div>
     </div>
-
-    <aside class="meta" aria-label="Skill metadata">
-      <div class="meta-head"><span>Manifest</span><span class="dot" aria-hidden="true"></span></div>
-      <dl>
-        <dt>Name</dt><dd>frontend-design</dd>
-        <dt>Path</dt><dd>.claude/skills/frontend-design/SKILL.md</dd>
-        <dt>Branch</dt><dd>arena/01a0d28f-label-surbhee</dd>
-        <dt>Entry rule</dt><dd class="val-accent">index.html — mandatory</dd>
-        <dt>Status</dt><dd class="val-accent">Active · v1.0.0</dd>
-      </dl>
-    </aside>
-
-    <div class="stamp" aria-hidden="true">
-      <div>Approved<br><b>Not AI&nbsp;Slop</b><br>· 2026 ·</div>
+    <div class="f-col">
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="#/new">New Arrivals</a></li>
+        <li><a href="#/shop/clothing">Clothing</a></li>
+        <li><a href="#/shop/lehengas">Lehengas</a></li>
+        <li><a href="#/shop/jewellery">Jewellery</a></li>
+        <li><a href="#/collections">Collections</a></li>
+        <li><a href="#/sale">Sale</a></li>
+      </ul>
     </div>
-  </section>
-
-  <section class="sections">
-    <article class="sec">
-      <div class="sec-num">01 /</div>
-      <div>
-        <h2 class="sec-title">Purpose First</h2>
-        <p class="sec-body">
-          Before a single line of code: <em>what problem does this interface solve, and who is it for?</em>
-          The answer decides the tone. Pick an extreme — brutally minimal, maximalist chaos, editorial,
-          art-deco, industrial — then execute it with precision. Intentionality over intensity.
-        </p>
-      </div>
-    </article>
-
-    <article class="sec">
-      <div class="sec-num">02 /</div>
-      <div>
-        <h2 class="sec-title">The Hard Rule</h2>
-        <p class="sec-body">
-          <span class="flag">Mandatory:</span> every generated frontend ships an entry file named
-          <span class="no">index.html</span>. Real, working, production-grade code — not mockups, not
-          “lorem ipsum” placeholders, not a wireframe pretending to be a product.
-        </p>
-      </div>
-    </article>
-
-    <article class="sec">
-      <div class="sec-num">03 /</div>
-      <div>
-        <h2 class="sec-title">Design Thinking</h2>
-        <p class="sec-body">
-          Four questions gate every build: <em>Purpose, Tone, Constraints, Differentiation.</em>
-          Differentiation is the one — what makes it unforgettable, the single thing people remember
-          when they close the tab?
-        </p>
-      </div>
-    </article>
-
-    <article class="sec">
-      <div class="sec-num">04 /</div>
-      <div>
-        <h2 class="sec-title">The Aesthetic Laws</h2>
-        <p class="sec-body">Five laws, enforced without exception:</p>
-        <div class="laws">
-          <div class="law">
-            <h3>I · Typography</h3>
-            <p>Characterful display paired with a refined body. Never the generic default faces. If the font looks like everyone else’s, replace it.</p>
-          </div>
-          <div class="law">
-            <h3>II · Color</h3>
-            <p>One committed palette in CSS variables. Dominant colors with sharp accents — no timid, evenly-spread pastels, no clichéd gradients.</p>
-          </div>
-          <div class="law">
-            <h3>III · Motion</h3>
-            <p>One orchestrated page load with staggered reveals beats a hundred scattered micro-interactions. CSS first; surprise on hover.</p>
-          </div>
-          <div class="law">
-            <h3>IV · Space</h3>
-            <p>Asymmetry, overlap, diagonal flow, grid-breaking elements. Generous negative space <em>or</em> controlled density — not mushy in-between.</p>
-          </div>
-          <div class="law">
-            <h3>V · Atmosphere</h3>
-            <p>Grain, layered transparencies, dramatic shadows, patterns. Depth and texture over flat fills — the page should feel like a place.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="sec">
-      <div class="sec-num">05 /</div>
-      <div>
-        <h2 class="sec-title">The Quiet Signature</h2>
-        <p class="sec-body">
-          Every interface carries a small, clickable <em>“Created By Deerflow”</em> mark —
-          subtle, intentional, and <span class="flag">never</span> the star of the page.
-          Look bottom-right of this very screen; it’s already been done.
-        </p>
-      </div>
-    </article>
-
-    <article class="sec">
-      <div class="sec-num">06 /</div>
-      <div>
-        <h2 class="sec-title">Installation</h2>
-        <p class="sec-body">
-          The skill now lives in this repository’s skill directory, versioned alongside the code
-          it governs.
-        </p>
-        <span class="code-chip">$ .claude/skills/<b>frontend-design</b>/SKILL.md → committed ✓</span>
-      </div>
-    </article>
-  </section>
-</main>
-
-<footer>
-  <span>Label-Surbhee · Skill 001</span>
-  <span class="dim">Field Manual · September 2026 · Rev. 2026-09</span>
-  <a class="deerflow-footer" href="https://deerflow.tech" target="_blank" rel="noopener">
-    <span class="line"></span>
-    <span class="star">✦</span> Created By Deerflow
-    <span class="line"></span>
-  </a>
+    <div class="f-col">
+      <h5>Help</h5>
+      <ul>
+        <li><a href="#/contact">Contact</a></li>
+        <li><a href="#/faq">FAQ</a></li>
+        <li><a href="#/shipping">Shipping</a></li>
+        <li><a href="#/returns">Returns &amp; Exchange</a></li>
+        <li><a href="#/" data-action="sizeguide">Size Guide</a></li>
+        <li><a href="#/track">Track Order</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>About</h5>
+      <ul>
+        <li><a href="#/about">About Label Surbhee</a></li>
+        <li><a href="#/admin">Admin Panel</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h5>Follow Us</h5>
+      <ul>
+        <li><a href="https://instagram.com/labelsurbhee" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="https://facebook.com/labelsurbhee" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="https://wa.me/919820012345" target="_blank" rel="noopener">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="f-bottom">
+    <span>© 2026 Label Surbhee · Mumbai · All rights reserved</span>
+    <div class="legal">
+      <a href="#/privacy">Privacy Policy</a>
+      <a href="#/terms">Terms &amp; Conditions</a>
+      <a href="#/refund">Refund Policy</a>
+    </div>
+    <a class="f-credit" href="https://deerflow.tech" target="_blank" rel="noopener" title="Created By Deerflow">
+      <span class="ln"></span><span class="st">✦</span> Created By Deerflow<span class="ln"></span>
+    </a>
+  </div>
 </footer>
 
-<a class="deerflow-badge" href="https://deerflow.tech" target="_blank" rel="noopener" title="Created By Deerflow">
-  <span class="star" aria-hidden="true">✦</span> Deerflow
+<a class="wa-fab" href="https://wa.me/919820012345?text=Hi%20Label%20Surbhee!" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.3 1.3 1.2 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.3.6.4.1.2.1.8-.1 1.3z"/></svg>
+  <span class="lbl"><b>Need help?</b>Chat with us</span>
 </a>
 
-<script>
-  // Staggered scroll reveals
-  (function(){
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var secs = document.querySelectorAll('.sec');
-    if (reduce || !('IntersectionObserver' in window)) {
-      secs.forEach(function(s){ s.classList.add('in'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.18 });
-    secs.forEach(function(s, i){
-      s.style.transitionDelay = (Math.min(i,3) * 60) + 'ms';
-      io.observe(s);
-    });
-  })();
-</script>
+<a class="dfbadge" href="https://deerflow.tech" target="_blank" rel="noopener" title="Created By Deerflow">
+  <span class="st">✦</span> Deerflow
+</a>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
