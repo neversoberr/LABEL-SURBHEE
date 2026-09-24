@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "contact-form",
+      "blocks": {
+        "card-1": { "type": "card", "settings": { "icon": "wa", "heading": "WhatsApp", "text": "<p><a href=\"https://wa.me/919820012345\">+91 98200 12345</a><br>Fastest way to reach us — sizing, bridal, orders.</p>" } },
+        "card-2": { "type": "card", "settings": { "icon": "phone", "heading": "Phone", "text": "<p><a href=\"tel:+919820012345\">+91 98200 12345</a><br>Mon – Sat · 11 am – 7 pm</p>" } },
+        "card-3": { "type": "card", "settings": { "icon": "mail", "heading": "Email", "text": "<p><a href=\"mailto:hello@labelsurbhee.com\">hello@labelsurbhee.com</a><br>Replies within one working day.</p>" } },
+        "card-4": { "type": "card", "settings": { "icon": "heart", "heading": "Instagram", "text": "<p><a href=\"https://instagram.com/labelsurbhee\">@labelsurbhee</a><br>Drops, edits and behind the needle.</p>" } },
+        "card-5": { "type": "card", "settings": { "icon": "pin", "heading": "Atelier", "text": "<p>Atelier 7, Linking Road, Bandra West, Mumbai 400050<br>By appointment for bridal.</p>" } }
+      },
+      "block_order": ["card-1", "card-2", "card-3", "card-4", "card-5"],
+      "settings": { "success_text": "Thank you — we'll reply within one working day." }
+    }
+  },
+  "order": ["main"]
+}

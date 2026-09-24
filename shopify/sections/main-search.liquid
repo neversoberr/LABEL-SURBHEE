@@ -1,0 +1,61 @@
+{%- comment -%} Search results. {%- endcomment -%}
+<div class="wrap">
+  <div class="search-head">
+    <p class="kicker center">Search</p>
+    <h1 class="h-md" style="margin-top:14px">
+      {%- if search.performed -%}
+        {{ search.results_count }} result{% if search.results_count == 1 %}{% else %}s{% endif %} for “{{ search.terms | escape }}”
+      {%- else -%}
+        Search the house
+      {%- endif -%}
+    </h1>
+    <form class="search-form" action="{{ routes.search_url }}" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Try “bridal”, “jhumka”, “saree”…" aria-label="Search">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  {%- if search.performed -%}
+    {%- if search.results.size == 0 -%}
+      <div class="empty">
+        <span class="orn">✦</span>
+        <p>Nothing for “{{ search.terms | escape }}” — try WhatsApp and we’ll hunt it down.</p>
+        <a class="btn btn-sm" href="https://wa.me/{{ settings.brand_whatsapp | remove: '+' | remove: ' ' }}?text={{ 'Hi Label Surbhee! I’m looking for something.' | url_encode }}" target="_blank" rel="noopener"><span>Ask us</span></a>
+      </div>
+    {%- else -%}
+      {%- paginate search.results by 24 -%}
+      <div class="pgrid wide" style="padding:4vh 0 8vh">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {% render 'product-card', product: item, index: forloop.index0 %}
+          {%- else -%}
+            <a class="post-card" href="{{ item.url }}">
+              <h3>{{ item.title }}</h3>
+              <p class="meta">{{ item.object_type }}</p>
+              <p class="muted" style="font-size:13.5px">{{ item.content | default: item.excerpt | strip_html | truncate: 120 }}</p>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if paginate.pages > 1 -%}
+        <nav class="pagination" aria-label="Pagination">
+          {%- if paginate.previous -%}<a class="prev" href="{{ paginate.previous.url }}">←</a>{%- endif -%}
+          {%- for part in paginate.parts -%}
+            {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>
+            {%- else -%}<span class="current">{{ part.title }}</span>{%- endif -%}
+          {%- endfor -%}
+          {%- if paginate.next -%}<a class="next" href="{{ paginate.next.url }}">→</a>{%- endif -%}
+        </nav>
+      {%- endif -%}
+      {%- endpaginate -%}
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Search results",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

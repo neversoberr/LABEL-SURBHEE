@@ -1,0 +1,72 @@
+{
+  "general": {
+    "search": {
+      "search": "Search"
+    },
+    "password_page": {
+      "password_page": "Password page"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page"
+    }
+  },
+  "shopify": {
+    "online_store": {
+      "spam_detection": {
+        "disclaimer": "This site is protected by hCaptcha and the hCaptcha Privacy Policy and Terms of Service apply."
+      }
+    },
+    "checkout": {
+      "general": {
+        "page_title": "Checkout"
+      }
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My Account"
+    },
+    "login": {
+      "title": "Login"
+    },
+    "register": {
+      "title": "Create account"
+    },
+    "recover_password": {
+      "title": "Reset your password"
+    },
+    "reset_password": {
+      "title": "Reset password"
+    },
+    "activate_account": {
+      "title": "Activate account"
+    },
+    "addresses": {
+      "title": "Saved addresses"
+    },
+    "order": {
+      "title": "Order {{ name }}"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your Bag"
+    }
+  },
+  "blogs": {
+    "article": {
+      "back_to_blog": "Back to journal"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content",
+    "close": "Close",
+    "previous_slide": "Previous slide",
+    "next_slide": "Next slide"
+  }
+}

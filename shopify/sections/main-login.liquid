@@ -1,0 +1,57 @@
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">Welcome back</p>
+    <h1>Login</h1>
+  </div>
+
+  <div class="acct-layout">
+    {%- form 'customer_login', id: 'CustomerLoginForm' -%}
+      <div class="cust-card">
+        <h3>Account login</h3>
+        {%- if form.errors -%}
+          <div class="shopify-form-msg error">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div class="field">
+          <label for="CustomerEmail">Email</label>
+          <input id="CustomerEmail" type="email" name="customer[email]" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="CustomerPassword">Password</label>
+          <input id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password" required>
+        </div>
+        <button class="btn btn-solid" type="submit"><span>Sign in</span></button>
+        <p class="cust-alt">
+          <a href="#recover" data-recover-link>Forgot your password?</a>
+        </p>
+        <p class="cust-alt">
+          New to the house? <a href="{{ routes.account_register_url }}">Create an account</a>
+        </p>
+      </div>
+    {%- endform -%}
+
+    <div class="cust-card" id="recover">
+      <h3>Reset your password</h3>
+      <p class="muted" style="font-size:13.5px;margin-bottom:18px">We’ll email you a link to choose a new one.</p>
+      {%- form 'recover_customer_password', id: 'RecoverPasswordForm' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="shopify-form-msg success">Check your inbox — a reset link is on its way.</p>
+        {%- elsif form.errors -%}
+          <div class="shopify-form-msg error">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div class="field">
+          <label for="RecoverEmail">Email</label>
+          <input id="RecoverEmail" type="email" name="email" autocomplete="email" required>
+        </div>
+        <button class="btn btn-solid" type="submit"><span>Send reset link</span></button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Login",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

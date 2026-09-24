@@ -1,0 +1,56 @@
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">My Account</p>
+    <h1>{{ customer.first_name | default: 'My Account' }}</h1>
+    <p class="lead">{{ customer.email }}</p>
+  </div>
+
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:3vh 0 0">
+    <a class="btn btn-sm" href="{{ routes.account_url }}"><span>Orders</span></a>
+    <a class="btn btn-sm" href="{{ routes.account_addresses_url }}"><span>Addresses</span></a>
+    <a class="btn btn-sm" href="{{ pages['wishlist'].url | default: routes.root_url }}"><span>Wishlist</span></a>
+    <a class="btn btn-sm" href="{{ routes.account_logout_url }}"><span>Log out</span></a>
+  </div>
+
+  <div class="acct" style="padding-top:5vh">
+    <h2 class="h-md" style="margin-bottom:3vh">Order history</h2>
+
+    {%- paginate customer.orders by 20 -%}
+      {%- if customer.orders.size == 0 -%}
+        <div class="empty"><span class="orn">✦</span><p>No orders yet.</p>
+          <a class="btn btn-sm" href="{{ routes.all_products_collection_url }}"><span>Start shopping</span></a></div>
+      {%- else -%}
+        {%- for order in customer.orders -%}
+          <div class="order-row">
+            <div>
+              <div class="oid"><a href="{{ order.customer_url }}">{{ order.name }}</a></div>
+              <div class="muted" style="font-size:12.5px;margin-top:4px">
+                {{ order.created_at | date: '%d %B %Y' }} · {{ order.line_items.size }} item{% if order.line_items.size == 1 %}{% else %}s{% endif %}
+              </div>
+            </div>
+            <span class="status">{{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</span>
+            <span class="gold">{{ order.total_price | money_without_trailing_zeros }}</span>
+          </div>
+        {%- endfor -%}
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="Pagination">
+            {%- if paginate.previous -%}<a class="prev" href="{{ paginate.previous.url }}">←</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- else -%}<span class="current">{{ part.title }}</span>{%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a class="next" href="{{ paginate.next.url }}">→</a>{%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Account",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

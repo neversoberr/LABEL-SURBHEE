@@ -1,0 +1,63 @@
+{%- comment -%} Instagram-style image strip. {%- endcomment -%}
+<section class="sec wrap" {% if section.settings.tight_top %}style="padding-top:2vh"{% endif %}>
+  <div class="sec-head rv">
+    <div>
+      {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+      <h2 class="h-lg" style="margin-top:12px">{{ section.settings.heading }}</h2>
+    </div>
+    {%- if section.settings.link_label != blank -%}
+      <a class="btn btn-sm" href="{{ section.settings.link }}" target="_blank" rel="noopener"><span>{{ section.settings.link_label }}</span></a>
+    {%- endif -%}
+  </div>
+  <div class="ig-grid rv">
+    {%- for block in section.blocks -%}
+      <a class="ig-tile" href="{{ section.settings.link }}" target="_blank" rel="noopener" aria-label="Follow {{ shop.name }} on Instagram" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <img src="{{ block.settings.image | image_url: width: 400 }}" alt="Label Surbhee on Instagram" loading="lazy">
+        {%- elsif block.settings.fallback_asset != blank -%}
+          <img src="{{ block.settings.fallback_asset | asset_url }}" alt="Label Surbhee on Instagram" loading="lazy">
+        {%- endif -%}
+        {%- if block.settings.likes != blank -%}<span class="ov">♥ <b>{{ block.settings.likes }}</b></span>{%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram feed",
+  "tag": "section",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Follow the Label" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "@labelsurbhee" },
+    { "type": "url", "id": "link", "label": "Instagram URL" },
+    { "type": "text", "id": "link_label", "label": "Link label", "default": "Follow on Instagram" },
+    { "type": "checkbox", "id": "tight_top", "label": "Tighten top spacing", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "fallback_asset", "label": "Theme asset filename", "info": "e.g. jewel1.jpg" },
+        { "type": "text", "id": "likes", "label": "Likes label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram feed",
+      "blocks": [
+        { "type": "tile", "settings": { "fallback_asset": "hero.jpg", "likes": "12.4k" } },
+        { "type": "tile", "settings": { "fallback_asset": "lehenga2.jpg", "likes": "9.1k" } },
+        { "type": "tile", "settings": { "fallback_asset": "jewel1.jpg", "likes": "15.8k" } },
+        { "type": "tile", "settings": { "fallback_asset": "saree1.jpg", "likes": "7.6k" } },
+        { "type": "tile", "settings": { "fallback_asset": "coords1.jpg", "likes": "6.2k" } },
+        { "type": "tile", "settings": { "fallback_asset": "about.jpg", "likes": "4.9k" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

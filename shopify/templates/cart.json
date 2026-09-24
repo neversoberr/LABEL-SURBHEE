@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-cart-items",
+      "settings": { "note": "Discounts and shipping are applied at checkout." }
+    }
+  },
+  "order": ["main"]
+}

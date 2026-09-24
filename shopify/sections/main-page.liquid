@@ -1,0 +1,23 @@
+{%- comment -%} Standard page (About, Shipping, Returns, Privacy …). {%- endcomment -%}
+<div class="wrap">
+  {%- if section.settings.show_hero -%}
+    <div class="page-hero">
+      {%- if section.settings.kicker != blank -%}<p class="kicker center">{{ section.settings.kicker }}</p>{%- endif -%}
+      <h1>{{ page.title }}</h1>
+    </div>
+  {%- endif -%}
+  <div class="prose" style="padding:6vh 0 9vh;max-width:82ch;margin:0 auto">
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_hero", "label": "Show page hero", "default": true },
+    { "type": "text", "id": "kicker", "label": "Kicker" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "ship": { "type": "accordion", "settings": { "heading": "Shipping", "content": "<p>Free shipping across India on orders above ₹1,999. Metro delivery in 2–4 days, rest of India in 3–7 days. Tracked by email and WhatsApp at every step. <a href=\"/pages/shipping\">Full shipping policy →</a></p>" } },
+        "ret": { "type": "accordion", "settings": { "heading": "Returns & exchange", "content": "<p>7-day returns and free exchange on unworn items with tags. <a href=\"/pages/returns-exchange\">Full policy →</a></p>" } },
+        "rev-1": { "type": "review", "settings": { "name": "Ananya M.", "city": "Mumbai", "date": "2 weeks ago", "rating": 5, "verified": true, "text": "The zardozi is even more beautiful in person. Wore it to my sister's sangeet and got endless compliments — the fabric falls exactly like the pictures promise." } },
+        "rev-2": { "type": "review", "settings": { "name": "Priya S.", "city": "Delhi", "date": "1 month ago", "rating": 5, "verified": true, "text": "Ordered a size up on WhatsApp advice and it fit perfectly. Embroidery is clean, no loose threads, packaging felt like unwrapping a gift." } },
+        "rev-3": { "type": "review", "settings": { "name": "Fatima K.", "city": "Hyderabad", "date": "3 weeks ago", "rating": 4, "verified": true, "text": "Beautiful piece and true to the photos. Slightly heavier than I expected but the drape makes up for it. Delivery took 4 days to Hyderabad." } },
+        "rev-4": { "type": "review", "settings": { "name": "Divya N.", "city": "Kolkata", "date": "3 days ago", "rating": 5, "verified": true, "text": "Bought the jhumkas with the festive lehenga — the set photographs unbelievably well. Feels premium from the box to the wear." } }
+      },
+      "block_order": ["ship", "ret", "rev-1", "rev-2", "rev-3", "rev-4"],
+      "settings": { "related_count": 4 }
+    }
+  },
+  "order": ["main"]
+}

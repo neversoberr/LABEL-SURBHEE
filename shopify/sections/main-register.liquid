@@ -1,0 +1,54 @@
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">Join the house</p>
+    <h1>Create account</h1>
+  </div>
+
+  <div class="acct-layout">
+    {%- form 'create_customer', id: 'CreateCustomerForm' -%}
+      <div class="cust-card">
+        <h3>Your details</h3>
+        {%- if form.errors -%}
+          <div class="shopify-form-msg error">{{ form.errors | default_errors }}</div>
+        {%- endif -%}
+        <div class="field">
+          <label for="FirstName">First name</label>
+          <input id="FirstName" type="text" name="customer[first_name]" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label for="LastName">Last name</label>
+          <input id="LastName" type="text" name="customer[last_name]" autocomplete="family-name">
+        </div>
+        <div class="field">
+          <label for="RegisterEmail">Email *</label>
+          <input id="RegisterEmail" type="email" name="customer[email]" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="RegisterPassword">Password *</label>
+          <input id="RegisterPassword" type="password" name="customer[password]" autocomplete="new-password" required>
+        </div>
+        <button class="btn btn-solid" type="submit"><span>Create account</span></button>
+        <p class="cust-alt">Already a member? <a href="{{ routes.account_login_url }}">Login</a></p>
+      </div>
+    {%- endform -%}
+
+    <div class="cust-card">
+      <h3>Why an account?</h3>
+      <ul class="prose" style="font-size:14.5px">
+        <li>Track every order, from confirmed to delivered.</li>
+        <li>Save addresses for one-tap checkout.</li>
+        <li>Early access to drops and bridal previews.</li>
+        <li>Faster returns and exchanges.</li>
+      </ul>
+      <p class="cust-alt">Ordering as a guest still works — checkout doesn’t require an account.</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Register",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

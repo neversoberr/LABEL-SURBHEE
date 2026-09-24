@@ -1,0 +1,99 @@
+{%- comment -%} Contact page — info cards + Shopify contact form. {%- endcomment -%}
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">Say hello</p>
+    <h1>{{ page.title | default: 'Contact' }}</h1>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'card' -%}
+          <div class="c-card" {{ block.shopify_attributes }}>
+            {% render 'icon', icon: block.settings.icon %}
+            <div>
+              <h4>{{ block.settings.heading }}</h4>
+              <p>{{ block.settings.text }}</p>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div>
+      {%- form 'contact', id: 'ContactForm' -%}
+        <div class="co-sec" style="margin:0">
+          <h3><span class="num">✦</span>Write to us</h3>
+          {%- if form.posted_successfully? -%}
+            <p class="shopify-form-msg success">{{ section.settings.success_text }}</p>
+          {%- elsif form.errors -%}
+            <p class="shopify-form-msg error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+          {%- endif -%}
+
+          <div class="frow one">
+            <div class="field">
+              <label for="ContactForm-name">Name *</label>
+              <input id="ContactForm-name" type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" required>
+            </div>
+          </div>
+          <div class="frow">
+            <div class="field">
+              <label for="ContactForm-email">Email *</label>
+              <input id="ContactForm-email" type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" required>
+            </div>
+            <div class="field">
+              <label for="ContactForm-phone">Phone (optional)</label>
+              <input id="ContactForm-phone" type="tel" name="contact[phone]" inputmode="numeric" value="{{ form.phone }}">
+            </div>
+          </div>
+          <div class="frow one">
+            <div class="field">
+              <label for="ContactForm-message">How can we help? *</label>
+              <textarea id="ContactForm-message" name="contact[body]" rows="5" required>{{ form.body }}</textarea>
+            </div>
+          </div>
+          <button class="btn btn-solid" type="submit" style="width:100%"><span>Send message</span></button>
+          <p class="adm-note">Or skip the form — WhatsApp gets the fastest reply.</p>
+        </div>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "Thank you — we’ll reply within one working day." }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Info card",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "wa", "label": "WhatsApp" },
+            { "value": "bag", "label": "Bag" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "user", "label": "Person" },
+            { "value": "mail", "label": "Mail" },
+            { "value": "phone", "label": "Phone" },
+            { "value": "pin", "label": "Pin" },
+            { "value": "clock", "label": "Clock" }
+          ],
+          "default": "wa"
+        },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "WhatsApp" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Fastest way to reach us — sizing, bridal, orders.</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Contact form" }]
+}
+{% endschema %}

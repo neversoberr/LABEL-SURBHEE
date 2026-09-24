@@ -1,0 +1,141 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "kicker": "New Season · 2026",
+        "title": "Draped in Maroon.",
+        "title_accent": "Finished in Gold.",
+        "sub": "Bridal lehengas, festive couture and heirloom jewellery — cut and embroidered by hand in our Bandra West atelier.",
+        "cta_1_label": "Shop new arrivals",
+        "cta_1_url": "/collections/new-arrivals",
+        "cta_2_label": "The bridal edit",
+        "cta_2_url": "/collections/wedding-edit",
+        "show_seal": true,
+        "seal_mark": "LS",
+        "seal_text": "Est. 2026\nMumbai"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "text": "New Season | Bridal | Festive Edit | Rozana | Boho Gypsy | Party Edit | Limited Edition"
+      }
+    },
+    "tiles": {
+      "type": "category-tiles",
+      "blocks": {
+        "tile-1": { "type": "tile", "settings": { "title": "Clothing", "text": "Dresses to dupattas", "fallback_asset": "dress1.jpg", "link": "/collections/clothing" } },
+        "tile-2": { "type": "tile", "settings": { "title": "Lehengas", "text": "Bridal to party", "fallback_asset": "lehenga1.jpg", "link": "/collections/lehengas" } },
+        "tile-3": { "type": "tile", "settings": { "title": "Jewellery", "text": "Kundan & chooda", "fallback_asset": "jewel1.jpg", "link": "/collections/jewellery" } },
+        "tile-4": { "type": "tile", "settings": { "title": "Festive Edit", "text": "The glow edit", "fallback_asset": "saree1.jpg", "link": "/collections/festive-edit" } }
+      },
+      "block_order": ["tile-1", "tile-2", "tile-3", "tile-4"],
+      "settings": {
+        "kicker": "The House",
+        "heading": "Shop by mood",
+        "link_label": "All collections",
+        "link_url": "/collections"
+      }
+    },
+    "new": {
+      "type": "featured-collection",
+      "settings": {
+        "kicker": "Just Landed",
+        "heading": "New Arrivals",
+        "collection": "new-arrivals",
+        "products_to_show": 8,
+        "link_label": "View all",
+        "tight_top": true,
+        "show_quick_add": true
+      }
+    },
+    "story": {
+      "type": "split-story",
+      "settings": {
+        "kicker": "The World of Label Surbhee",
+        "lead": "“We don’t design for trends. We design for the woman who will still be wearing it in ten years — and remember how it felt the first time.”",
+        "text": "A Mumbai atelier working in deep maroon and antique gold — bridal lehengas, festive couture and heirloom jewellery, cut and embroidered by hand.",
+        "heading": "The Label Surbhee atelier",
+        "button_label": "Read our story",
+        "button_url": "/pages/about"
+      }
+    },
+    "collections": {
+      "type": "collection-grid",
+      "blocks": {
+        "c-1": { "type": "collection_item", "settings": { "collection": "new-collection", "title": "New Collection", "blurb": "This season's first looks — maroon silk, gold thread, fresh air.", "fallback_asset": "lehenga2.jpg", "tall": true } },
+        "c-2": { "type": "collection_item", "settings": { "collection": "rozana", "title": "Rozana", "blurb": "Rozana means “everyday”. Polished pieces for days that don't ask for ceremony.", "fallback_asset": "top1.jpg" } },
+        "c-3": { "type": "collection_item", "settings": { "collection": "festive-edit", "title": "Festive Edit", "blurb": "Diwali light, wedding light — everything that catches the glow.", "fallback_asset": "saree1.jpg" } },
+        "c-4": { "type": "collection_item", "settings": { "collection": "wedding-edit", "title": "Wedding Edit", "blurb": "Bridal lehengas and heirloom jewellery, made for the moment you wait a lifetime for.", "fallback_asset": "lehenga1.jpg", "wide": true } },
+        "c-5": { "type": "collection_item", "settings": { "collection": "boho-gypsy", "title": "Boho / Gypsy", "blurb": "Layered, loose, a little wild — embroidery that remembers the desert.", "fallback_asset": "about.jpg" } },
+        "c-6": { "type": "collection_item", "settings": { "collection": "party-edit", "title": "Party Edit", "blurb": "After-dark silhouettes. Cut to move, finished to stop the room.", "fallback_asset": "dress1.jpg" } },
+        "c-7": { "type": "collection_item", "settings": { "collection": "beach-resort", "title": "Beach / Resort", "blurb": "Sea salt and silk. Lightweight drapes for sunlit balconies and slow mornings.", "fallback_asset": "saree1.jpg" } },
+        "c-8": { "type": "collection_item", "settings": { "collection": "limited-edition", "title": "Limited Edition", "blurb": "Small numbers, large intention. When a piece sells out, it's gone.", "fallback_asset": "jewel2.jpg" } }
+      },
+      "block_order": ["c-1", "c-2", "c-3", "c-4", "c-5", "c-6", "c-7", "c-8"],
+      "settings": { "kicker": "Editorial", "heading": "Collections" }
+    },
+    "saleband": {
+      "type": "sale-band",
+      "settings": {
+        "kicker": "Festive Sale",
+        "text": "Up to <em>30% off</em> the festive edit",
+        "code": "Shop the sale — code FESTIVE20",
+        "link": "/collections/sale"
+      }
+    },
+    "sale": {
+      "type": "featured-collection",
+      "settings": {
+        "kicker": "On Sale Now",
+        "heading": "The Sale Edit",
+        "collection": "sale",
+        "products_to_show": 4,
+        "link_label": "View all",
+        "show_quick_add": true
+      }
+    },
+    "ig": {
+      "type": "instagram-feed",
+      "blocks": {
+        "ig-1": { "type": "tile", "settings": { "fallback_asset": "hero.jpg", "likes": "12.4k" } },
+        "ig-2": { "type": "tile", "settings": { "fallback_asset": "lehenga2.jpg", "likes": "9.1k" } },
+        "ig-3": { "type": "tile", "settings": { "fallback_asset": "jewel1.jpg", "likes": "15.8k" } },
+        "ig-4": { "type": "tile", "settings": { "fallback_asset": "saree1.jpg", "likes": "7.6k" } },
+        "ig-5": { "type": "tile", "settings": { "fallback_asset": "coords1.jpg", "likes": "6.2k" } },
+        "ig-6": { "type": "tile", "settings": { "fallback_asset": "about.jpg", "likes": "4.9k" } }
+      },
+      "block_order": ["ig-1", "ig-2", "ig-3", "ig-4", "ig-5", "ig-6"],
+      "settings": {
+        "kicker": "Follow the Label",
+        "heading": "@labelsurbhee",
+        "link": "https://instagram.com/labelsurbhee",
+        "link_label": "Follow on Instagram",
+        "tight_top": true
+      }
+    },
+    "trust": {
+      "type": "trust-row",
+      "blocks": {
+        "t-1": { "type": "item", "settings": { "icon": "truck", "heading": "Free Shipping", "text": "On all orders above ₹1,999" } },
+        "t-2": { "type": "item", "settings": { "icon": "swap", "heading": "7-Day Returns", "text": "Easy exchange across India" } },
+        "t-3": { "type": "item", "settings": { "icon": "shield", "heading": "Secure Checkout", "text": "256-bit SSL protected" } },
+        "t-4": { "type": "item", "settings": { "icon": "cash", "heading": "COD Available", "text": "Cash on delivery across India" } }
+      },
+      "block_order": ["t-1", "t-2", "t-3", "t-4"]
+    },
+    "news": {
+      "type": "newsletter",
+      "settings": {
+        "kicker": "The Inner Circle",
+        "heading": "Join the list",
+        "text": "Early access to drops, bridal previews and festival sales — plus 10% off your first order.",
+        "placeholder": "Your email address",
+        "button_label": "Subscribe",
+        "success_text": "You're on the list — welcome to the house."
+      }
+    }
+  },
+  "order": ["hero", "marquee", "tiles", "new", "story", "collections", "saleband", "sale", "ig", "trust", "news"]
+}

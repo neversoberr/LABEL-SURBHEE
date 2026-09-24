@@ -1,0 +1,27 @@
+{
+  "current": {
+    "brand_tagline": "Draped in Maroon. Finished in Gold.",
+    "brand_phone": "+91 98200 12345",
+    "brand_whatsapp": "919820012345",
+    "brand_email": "hello@labelsurbhee.com",
+    "brand_address": "Atelier 7, Linking Road, Bandra West, Mumbai 400050",
+    "announcement_text": "✦ Free shipping on orders over ₹1,999   ✦  COD available across India   ✦  7-day returns   ✦  Track every step on WhatsApp",
+    "topbar_left": "Track Order",
+    "color_bg_deep": "#1f050c",
+    "color_bg": "#2b0811",
+    "color_bg_alt": "#330b16",
+    "color_gold": "#c9a24b",
+    "color_gold_light": "#e2c27e",
+    "color_text": "#f5edda",
+    "color_text_dim": "#c8bca1",
+    "free_shipping_threshold": 1999,
+    "size_guide": "S|32–34|26–28|34–36\nM|34–36|28–30|36–38\nL|36–38|30–32|38–40\nXL|38–40|32–34|40–42\nXXL|40–42|34–36|42–44",
+    "wa_greeting": "Hi Label Surbhee!",
+    "wa_label_1": "Need help?",
+    "wa_label_2": "Chat with us",
+    "social_instagram_link": "https://instagram.com/labelsurbhee",
+    "social_facebook_link": "https://facebook.com/labelsurbhee",
+    "favicon": null,
+    "og_image": null
+  }
+}

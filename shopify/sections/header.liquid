@@ -1,0 +1,205 @@
+{%- comment -%}
+  Site header — announcement bar, top links, logo, mega-menu navigation,
+  icons (search · account · wishlist · bag) and the full-screen mobile menu.
+{%- endcomment -%}
+
+<div class="announce">
+  {{ settings.announcement_text }}
+</div>
+
+<header class="site" data-header>
+  <div class="topbar">
+    <a href="{{ pages['track-order'].url | default: routes.root_url }}">{{ settings.topbar_left | default: 'Track Order' }}</a>
+    <div class="tb-r">
+      {%- for link in section.settings.top_menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="hd-main">
+    <button class="burger" data-action="mm-open" aria-label="Open menu" type="button">
+      {% render 'icon', icon: 'menu' %}
+    </button>
+
+    <a class="logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
+      {{ section.settings.logo_text }} <span class="dia">✦</span> {{ section.settings.logo_text_2 }}
+      <small>{{ section.settings.logo_tagline }}</small>
+    </a>
+
+    <nav class="main" aria-label="Main navigation">
+      <ul>
+        {%- assign main_menu = section.settings.menu -%}
+        {%- for link in main_menu.links -%}
+          {%- assign has_dropdown = false -%}
+          {%- if link.links != blank -%}{%- assign has_dropdown = true -%}{%- endif -%}
+          <li class="{% if has_dropdown %}has-mega{% endif %}" data-handle="{{ link.handle }}">
+            <a class="nav-link{% if link.active %} active{% endif %}" href="{{ link.url }}">
+              {{ link.title }}{% if has_dropdown %} <span class="chev">▾</span>{% endif %}
+            </a>
+            {%- if has_dropdown -%}
+              {%- assign half = link.links.size | divided_by: 2.0 | ceil -%}
+              <div class="mega">
+                <div class="mega-col">
+                  <h4>{{ link.title }} <a href="{{ link.url }}">View all →</a></h4>
+                  <ul>
+                    {%- for child in link.links limit: half -%}
+                      <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+                <div class="mega-col" style="padding-left:0">
+                  <ul style="margin-top:2px">
+                    {%- for child in link.links offset: half -%}
+                      <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.handle == link.handle -%}
+                    <div class="mega-feat" {{ block.shopify_attributes }}>
+                      {%- if block.settings.image != blank -%}
+                        <img src="{{ block.settings.image | image_url: width: 520 }}" alt="{{ block.settings.heading | escape }}" loading="lazy">
+                      {%- endif -%}
+                      <a href="{{ block.settings.link | default: link.url }}">
+                        <span class="kf">{{ block.settings.kicker }}</span>
+                        <h5>{{ block.settings.heading }}</h5>
+                        <span>Explore →</span>
+                      </a>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="hd-icons">
+      <button data-action="search" aria-label="Search" type="button">{% render 'icon', icon: 'search' %}</button>
+      <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" aria-label="My account">{% render 'icon', icon: 'user' %}</a>
+
+      {%- if section.settings.show_wishlist -%}
+        <a href="{{ pages['wishlist'].url | default: routes.root_url }}" aria-label="Wishlist">
+          {% render 'icon', icon: 'heart' %}
+          <span class="cart-count" id="wish-count" style="display:none">0</span>
+        </a>
+      {%- endif -%}
+
+      <button data-action="cart" aria-label="Shopping bag" type="button">
+        {% render 'icon', icon: 'bag' %}
+        <span class="cart-count" id="cart-count" {% if cart.item_count == 0 %}style="display:none"{% endif %}>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mmenu" id="mmenu" aria-label="Mobile menu">
+  <div class="mm-head">
+    <span style="font-family:var(--disp);letter-spacing:.4em;color:var(--gold);font-size:16px">{{ shop.name | upcase }}</span>
+    <button class="mm-close" data-action="mm-close" aria-label="Close menu" type="button">✕</button>
+  </div>
+  <nav id="mm-subs">
+    {%- for link in section.settings.menu.links -%}
+      <div class="mm-item">
+        <button type="button">{{ link.title }} {% if link.links != blank %}<span class="chev">▾</span>{% endif %}</button>
+        {%- if link.links != blank -%}
+          <div class="mm-subs">
+            {%- for child in link.links -%}
+              <a href="{{ child.url }}">{{ child.title }}</a>
+            {%- endfor -%}
+            <a href="{{ link.url }}" style="color:var(--gold)">View all →</a>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </nav>
+  <div style="padding:6px 5vw 44px;display:flex;flex-direction:column;gap:12px">
+    <a class="btn btn-solid" href="{{ routes.all_products_collection_url }}"><span>Shop everything</span></a>
+    <a class="btn btn-ghost" href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"><span>{% if customer %}My Account{% else %}Login{% endif %}</span></a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo — first word",
+      "default": "LABEL"
+    },
+    {
+      "type": "text",
+      "id": "logo_text_2",
+      "label": "Logo — second word",
+      "default": "SURBHEE"
+    },
+    {
+      "type": "text",
+      "id": "logo_tagline",
+      "label": "Logo tagline",
+      "default": "House of Maroon & Gold"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "top_menu",
+      "label": "Top bar menu",
+      "info": "Shipping · Returns · FAQ · My Account"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist",
+      "label": "Show wishlist icon",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_feature",
+      "name": "Mega-menu feature",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Menu item handle",
+          "info": "The handle of the top-level menu item this panel belongs to (e.g. lehengas)."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Feature image"
+        },
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "Kicker",
+          "default": "The Bridal Edit"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Zardozi, made by hand"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

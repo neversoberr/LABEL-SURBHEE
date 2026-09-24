@@ -1,0 +1,7 @@
+{%- comment -%} Usage: {% render 'breadcrumbs', extra: product.title, extra_url: product.url %}{%- endcomment -%}
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a href="{{ routes.root_url }}">Home</a><span>/</span>
+  {%- if crumb_1_title != blank -%}<a href="{{ crumb_1_url }}">{{ crumb_1_title }}</a><span>/</span>{%- endif -%}
+  {%- if crumb_2_title != blank -%}{% if crumb_2_url != blank %}<a href="{{ crumb_2_url }}">{{ crumb_2_title }}</a>{% else %}{{ crumb_2_title }}{% endif %}<span>/</span>{%- endif -%}
+  {%- if crumb_3_title != blank -%}{{ crumb_3_title }}{%- endif -%}
+</nav>

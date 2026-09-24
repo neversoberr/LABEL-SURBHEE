@@ -1,0 +1,27 @@
+{%- comment -%} Scrolling word marquee. {%- endcomment -%}
+{%- assign words = section.settings.text | split: '|' -%}
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    {%- for pass in (1..2) -%}
+      {%- for w in words -%}{{ w | strip }} <em>❖</em> {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "class": "section-marquee",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Words",
+      "info": "Separate each word with a | character.",
+      "default": "New Season | Bridal | Festive Edit | Rozana | Boho Gypsy | Party Edit | Limited Edition"
+    }
+  ],
+  "presets": [{ "name": "Marquee" }]
+}
+{% endschema %}
