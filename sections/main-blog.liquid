@@ -7,7 +7,7 @@
     {%- for article in blog.articles -%}
       <a class="post-card rv" href="{{ article.url }}">
         {%- if article.image -%}
-          <div class="pcard-img"><img src="{{ article.image | image_url: width: 700 }}" alt="{{ article.title | escape }}" loading="lazy"></div>
+          <div class="pcard-img"><img src="{{ article.image | image_url: width: 700 }}" alt="{{ article.title | escape }}" width="560" height="700" loading="lazy"></div>
         {%- endif -%}
         <p class="meta">{{ article.published_at | date: '%d %B %Y' }}</p>
         <h3>{{ article.title }}</h3>

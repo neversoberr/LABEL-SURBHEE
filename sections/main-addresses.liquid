@@ -22,7 +22,8 @@
             <a href="#" data-address-delete="{{ address.id }}">Delete</a>
           </div>
 
-          {%- form 'customer_address', address, id: 'AddressForm-' | append: address.id, class: 'addr-edit-form' -%}
+          {%- assign addr_form_id = 'AddressForm-' | append: address.id -%}
+          {%- form 'customer_address', address, id: addr_form_id, class: 'addr-edit-form' -%}
             <div class="field" style="margin-top:16px"><label>First name</label><input type="text" name="address[first_name]" value="{{ address.first_name }}"></div>
             <div class="field"><label>Last name</label><input type="text" name="address[last_name]" value="{{ address.last_name }}"></div>
             <div class="field"><label>Company</label><input type="text" name="address[company]" value="{{ address.company }}"></div>

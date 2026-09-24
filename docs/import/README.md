@@ -35,14 +35,14 @@ Shopify downloads them into your store's Files during import, so the store
 keeps working even if the repo moves. For production, replace them with
 real product photography (Products → pick a product → Media).
 
-> If you import from a branch instead of `main`, find-replace `/main/img/`
-> in the CSV with `/<branch>/img/` first.
+> If you import from a branch instead of `main`, find-replace `/main/preview/img/`
+> in the CSV with `/<branch>/preview/img/` first.
 
 ## Rebuilding the CSV
 
-If the catalogue in `js/data.js` changes, regenerate:
+If the catalogue in `preview/js/data.js` changes, regenerate:
 
 ```bash
-cd shopify/import
+cd docs/import
 node build-products.js
 ```

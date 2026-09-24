@@ -4,10 +4,33 @@
 
 Deep maroon · antique gold · ivory. Bridal lehengas, festive couture, sarees and heirloom jewellery.
 
-## Run it
+**This repository is a Shopify Online Store 2.0 theme.** The theme root is the
+repo root, so it can be installed by connecting the repository URL or by
+running `shopify theme dev` here — see
+[`docs/SHOPIFY-GUIDE.md`](docs/SHOPIFY-GUIDE.md).
+
+## Structure
+
+```
+layout/theme.liquid        ← global shell (header, footer, cart drawer, search)
+templates/                 ← 21 JSON templates (home, product, collections, cart, account…)
+sections/                  ← 32 sections (hero, tiles, grids, product, cart, account…)
+snippets/                  ← product-card, price, stars, breadcrumbs, icons
+assets/                    ← theme.css (design system) + theme.js (storefront engine) + imagery
+config/                    ← settings_schema.json / settings_data.json
+locales/en.default.json
+docs/SHOPIFY-GUIDE.md      ← install + store-setup guide
+docs/import/               ← products.csv, page HTML, collections/menus/discounts docs
+preview/                   ← the original static demo (not part of the theme)
+.theme-validate.mjs        ← structural check for the theme
+```
+
+## Run the static demo
+
+The pre-Shopify demo still lives in `preview/`:
 
 ```bash
-cd LABEL-SURBHEE
+cd LABEL-SURBHEE/preview
 python3 -m http.server 8080
 # open http://localhost:8080
 ```
@@ -15,16 +38,11 @@ python3 -m http.server 8080
 No build step, no dependencies — pure HTML/CSS/JS. All state (cart, wishlist,
 orders, admin edits) persists in the browser via `localStorage`.
 
-## Structure
+## Check the theme
 
-```
-index.html                 ← storefront entry (hash-routed SPA)
-css/style.css              ← design system (maroon/gold/ivory)
-js/data.js                 ← catalogue, collections, FAQ, brand config
-js/app.js                  ← router, cart, checkout, account, admin, tracking
-img/                       ← brand photography
-sitemap.xml · robots.txt   ← SEO
-.claude/skills/frontend-design/SKILL.md  ← the design skill that governed this build
+```bash
+node .theme-validate.mjs   # sections/snippets/assets/settings references + JSON validity
+shopify theme check        # official Liquid / performance lint
 ```
 
 ## Features (client-side demo, no backend)

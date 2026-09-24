@@ -25,7 +25,7 @@
                     <div class="ci">
                       <a href="{{ item.url }}">
                         {%- if item.image -%}
-                          <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}" loading="lazy">
+                          <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}" width="192" height="240" loading="lazy">
                         {%- endif -%}
                       </a>
                       <div>

@@ -17,11 +17,11 @@
       <a class="citem {% if block.settings.tall %}tall{% endif %} {% if block.settings.wide %}wide{% endif %} rv"
          href="{{ c.url | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
         {%- if block.settings.image != blank -%}
-          <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.title | default: c.title | escape }}" loading="lazy">
+          <img src="{{ block.settings.image | image_url: width: 900 }}" alt="{{ block.settings.title | default: c.title | escape }}" width="720" height="900" loading="lazy">
         {%- elsif c.image -%}
-          <img src="{{ c.image | image_url: width: 900 }}" alt="{{ c.title | escape }}" loading="lazy">
+          <img src="{{ c.image | image_url: width: 900 }}" alt="{{ c.title | escape }}" width="720" height="900" loading="lazy">
         {%- elsif block.settings.fallback_asset != blank -%}
-          <img src="{{ block.settings.fallback_asset | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+          <img src="{{ block.settings.fallback_asset | asset_url }}" alt="{{ block.settings.title | escape }}" width="928" height="1152" loading="lazy">
         {%- endif -%}
         <span class="arr">↗</span>
         <div class="in">
