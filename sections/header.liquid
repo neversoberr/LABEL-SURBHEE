@@ -59,7 +59,7 @@
                   {%- if block.settings.handle == link.handle -%}
                     <div class="mega-feat" {{ block.shopify_attributes }}>
                       {%- if block.settings.image != blank -%}
-                        <img src="{{ block.settings.image | image_url: width: 520 }}" alt="{{ block.settings.heading | escape }}" loading="lazy">
+                        <img src="{{ block.settings.image | image_url: width: 520 }}" alt="{{ block.settings.heading | escape }}" width="390" height="520" loading="lazy">
                       {%- endif -%}
                       <a href="{{ block.settings.link | default: link.url }}">
                         <span class="kf">{{ block.settings.kicker }}</span>

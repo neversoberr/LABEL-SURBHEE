@@ -39,7 +39,7 @@
               data-thumb-src="{{ media.preview_image | image_url: width: 1200 }}"
               data-thumb-alt="{{ media.alt | default: product.title | escape }}"
               aria-label="View image {{ forloop.index }}">
-              <img src="{{ media.preview_image | image_url: width: 400 }}" alt="{{ media.alt | default: product.title | escape }}" loading="lazy">
+              <img src="{{ media.preview_image | image_url: width: 400 }}" alt="{{ media.alt | default: product.title | escape }}" width="400" height="400" loading="lazy">
             </button>
           {%- endfor -%}
         </div>

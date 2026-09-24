@@ -5,7 +5,7 @@
   </div>
   {%- if article.image -%}
     <div style="max-width:1000px;margin:5vh auto">
-      <img src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.title | escape }}" style="width:100%">
+      <img src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.title | escape }}" width="1400" height="1750" style="width:100%">
     </div>
   {%- endif -%}
   <div class="article-body prose">{{ article.content }}</div>

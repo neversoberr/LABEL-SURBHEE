@@ -5,8 +5,12 @@ storefront: same maroon & gold design system, mega-menu, cart drawer,
 product pages, collections, search, wishlist, WhatsApp chat and all content
 pages — now running on real Shopify products, cart, checkout and accounts.
 
+**The theme lives at the root of this repository** — that is what makes it a
+theme. Shopify reads `layout/`, `sections/`, `templates/` … from the repo root,
+so a theme nested in a subfolder is not recognised as one.
+
 ```
-shopify/
+LABEL-SURBHEE/                 ← repo root == theme root
 ├── layout/theme.liquid        ← global shell (header/footer/drawer/search/size-guide/WhatsApp)
 ├── templates/                 ← 21 JSON templates (home, product, collection ×4, cart,
 │   └── customers/               pages, blog, search, 404, all 7 account pages)
@@ -15,8 +19,12 @@ shopify/
 ├── assets/theme.css + theme.js← design system + storefront engine
 ├── config/                    ← theme settings (brand, colours, WhatsApp, size guide…)
 ├── locales/en.default.json
-└── import/                    ← products.csv + pages + collections/menus/discounts docs
+├── docs/import/               ← products.csv + pages + collections/menus/discounts docs
+└── preview/                   ← the original static demo (not part of the theme)
 ```
+
+`docs/` and `preview/` are not theme directories — Shopify ignores them when
+you connect or push the repo, and they are excluded from the zip in section A.
 
 Theme-only concepts from the demo (hash router, `localStorage` cart/orders,
 `#/admin` panel, simulated checkout) are **replaced by real Shopify
@@ -26,13 +34,15 @@ features** — see "What changed" at the bottom.
 
 ## A · Install the theme (no code tools needed)
 
-1. Zip the theme folder:
+1. Zip the theme — from the **repo root**, excluding the non-theme folders:
    ```bash
-   cd LABEL-SURBHEE/shopify
-   zip -r ../label-surbhee-theme.zip . -x 'import/*'
+   cd LABEL-SURBHEE
+   zip -r label-surbhee-theme.zip \
+     assets config layout locales sections snippets templates \
+     -x '*.DS_Store'
    ```
-   (The `import/` folder is documentation — Shopify ignores unknown
-   top-level folders, but excluding it keeps the upload clean.)
+   (Only the seven theme directories belong in the zip. `docs/`, `preview/`
+   and the README are documentation, not theme files.)
 2. Shopify admin → **Online Store → Themes → Add theme → Upload zip file**,
    choose `label-surbhee-theme.zip`. It appears under "Theme library" as an
    unpublished theme.
@@ -42,12 +52,19 @@ features** — see "What changed" at the bottom.
 ## B · Install with Shopify CLI (developers)
 
 ```bash
+git clone https://github.com/neversoberr/LABEL-SURBHEE.git
+cd LABEL-SURBHEE                 # ← the theme root, not a subfolder
 npm install -g @shopify/cli @shopify/theme
-cd LABEL-SURBHEE/shopify
 
 shopify theme dev --store YOUR-STORE.myshopify.com   # live preview + editor sync
 # …when happy:
 shopify theme push --store YOUR-STORE.myshopify.com  # uploads as unpublished theme
+```
+
+To keep the theme connected to this repository (so `git pull` updates it):
+
+```bash
+shopify theme init --clone-url https://github.com/neversoberr/LABEL-SURBHEE.git label-surbhee
 ```
 
 Useful checks:
@@ -55,6 +72,7 @@ Useful checks:
 ```bash
 shopify theme check     # Liquid / JSON / performance lint
 shopify theme language-server  # editor integration (optional)
+node .theme-validate.mjs      # structural check: refs to sections/snippets/assets/settings
 ```
 
 ## C · Fill the store (in this order)

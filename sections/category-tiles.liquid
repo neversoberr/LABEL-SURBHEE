@@ -13,9 +13,9 @@
     {%- for block in section.blocks -%}
       <a class="ctile rv" href="{{ block.settings.link | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
         {%- if block.settings.image != blank -%}
-          <img src="{{ block.settings.image | image_url: width: 700 }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+          <img src="{{ block.settings.image | image_url: width: 700 }}" alt="{{ block.settings.title | escape }}" width="525" height="700" loading="lazy">
         {%- elsif block.settings.fallback_asset != blank -%}
-          <img src="{{ block.settings.fallback_asset | asset_url }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+          <img src="{{ block.settings.fallback_asset | asset_url }}" alt="{{ block.settings.title | escape }}" width="928" height="1152" loading="lazy">
         {%- endif -%}
         <div class="in">
           <div><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></div>

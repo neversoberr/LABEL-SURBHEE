@@ -13,9 +13,9 @@
     {%- for block in section.blocks -%}
       <a class="ig-tile" href="{{ section.settings.link }}" target="_blank" rel="noopener" aria-label="Follow {{ shop.name }} on Instagram" {{ block.shopify_attributes }}>
         {%- if block.settings.image != blank -%}
-          <img src="{{ block.settings.image | image_url: width: 400 }}" alt="Label Surbhee on Instagram" loading="lazy">
+          <img src="{{ block.settings.image | image_url: width: 400 }}" alt="Label Surbhee on Instagram" width="400" height="400" loading="lazy">
         {%- elsif block.settings.fallback_asset != blank -%}
-          <img src="{{ block.settings.fallback_asset | asset_url }}" alt="Label Surbhee on Instagram" loading="lazy">
+          <img src="{{ block.settings.fallback_asset | asset_url }}" alt="Label Surbhee on Instagram" width="928" height="1152" loading="lazy">
         {%- endif -%}
         {%- if block.settings.likes != blank -%}<span class="ov">♥ <b>{{ block.settings.likes }}</b></span>{%- endif -%}
       </a>

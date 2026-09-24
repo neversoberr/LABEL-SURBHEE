@@ -20,7 +20,7 @@
                 <div class="ci">
                   <a href="{{ line_item.product.url }}">
                     {%- if line_item.image -%}
-                      <img src="{{ line_item.image | image_url: width: 240 }}" alt="{{ line_item.title | escape }}" loading="lazy">
+                      <img src="{{ line_item.image | image_url: width: 240 }}" alt="{{ line_item.title | escape }}" width="192" height="240" loading="lazy">
                     {%- endif -%}
                   </a>
                   <div>
