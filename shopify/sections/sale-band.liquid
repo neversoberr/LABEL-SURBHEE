@@ -1,0 +1,24 @@
+{%- comment -%} Full-width promotional band. {%- endcomment -%}
+<div class="saleband rv">
+  {%- if section.settings.kicker != blank -%}
+    <p class="kicker center" style="justify-content:center">{{ section.settings.kicker }}</p>
+  {%- endif -%}
+  <p class="big">{{ section.settings.text }}</p>
+  {%- if section.settings.code != blank -%}
+    <a class="code" href="{{ section.settings.link | default: routes.all_products_collection_url }}">{{ section.settings.code }}</a>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Promotional band",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Festive Sale" },
+    { "type": "text", "id": "text", "label": "Text", "info": "Wrap a word in <em>italics</em> for the gold accent.", "default": "Up to <em>30% off</em> the festive edit" },
+    { "type": "text", "id": "code", "label": "Code / CTA", "default": "Shop the sale — code FESTIVE20" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Promotional band" }]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code | default: 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <meta name="theme-color" content="{{ settings.color_bg_deep | default: '#2b0811' }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  {% if settings.favicon != blank %}
+    <link rel="shortcut icon" href="{{ settings.favicon | image_url: width: 96 }}">
+  {% endif %}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ shop.name }}">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_description | default: shop.description | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  {% if settings.og_image != blank %}
+    <meta property="og:image" content="{{ settings.og_image | image_url: width: 1200 }}">
+    <meta property="og:image:width" content="1200">
+  {% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ClothingStore",
+    "name": {{ shop.name | json }},
+    "description": {{ shop.description | default: settings.brand_tagline | json }},
+    "url": {{ canonical_url | json }},
+    "telephone": {{ settings.brand_phone | json }},
+    "email": {{ settings.brand_email | json }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ settings.brand_address | json }},
+      "addressLocality": "Mumbai",
+      "addressRegion": "Maharashtra",
+      "addressCountry": "IN"
+    }{% if settings.social_instagram_link != blank %},
+    "sameAs": [{{ settings.social_instagram_link | json }}{% if settings.social_facebook_link != blank %}, {{ settings.social_facebook_link | json }}{% endif %}]
+    {% endif %}
+  }
+  </script>
+
+  {{ content_for_header }}
+
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  {% style %}
+    :root{
+      --m950: {{ settings.color_bg_deep }};
+      --m900: {{ settings.color_bg }};
+      --m850: {{ settings.color_bg_alt }};
+      --gold: {{ settings.color_gold }};
+      --gold-l: {{ settings.color_gold_light }};
+      --ivory: {{ settings.color_text }};
+      --ivory-dim: {{ settings.color_text_dim }};
+      --line-gold: {{ settings.color_gold | color_modify: 'alpha', 0.32 }};
+      --line-gold-soft: {{ settings.color_gold | color_modify: 'alpha', 0.16 }};
+      --line-ivory: {{ settings.color_text | color_modify: 'alpha', 0.14 }};
+    }
+  {% endstyle %}
+</head>
+
+<body class="template-{{ template | split: '.' | first }}{% if template.suffix %} template-suffix-{{ template.suffix }}{% endif %}">
+
+  <a class="skip" href="#MainContent">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+
+  {% section 'header' %}
+
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  {% section 'cart-drawer' %}
+
+  <!-- search overlay -->
+  <div class="overlay" id="search-ov" role="dialog" aria-label="Search" aria-modal="true">
+    <button class="x" data-action="close-search" aria-label="Close search">✕</button>
+    <form class="srch" action="{{ routes.search_url }}" method="get" role="search">
+      <input
+        id="srch-in"
+        type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="Search the house — try “bridal”"
+        aria-label="Search products"
+        autocomplete="off">
+    </form>
+    <div class="srch-results" id="srch-res"></div>
+  </div>
+
+  <!-- size guide modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Size guide">
+    <div class="modal-box" id="modal-box">
+      <button class="x" data-action="close-modal" aria-label="Close">✕</button>
+      <p class="kicker">Fit, right the first time</p>
+      <h3 style="margin-top:12px">Size Guide</h3>
+      <p class="sub">Measurements in inches, taken over light clothing.</p>
+      <table class="sg">
+        <tr><th>Size</th><th>Bust</th><th>Waist</th><th>Hip</th></tr>
+        {% assign size_rows = settings.size_guide | newline_to_br | split: '<br />' %}
+        {% for row in size_rows %}
+          {% assign cells = row | split: '|' %}
+          {% if cells.size == 4 %}
+            <tr><td class="gold">{{ cells[0] | strip }}</td><td>{{ cells[1] | strip }}</td><td>{{ cells[2] | strip }}</td><td>{{ cells[3] | strip }}</td></tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+      <p class="muted" style="font-size:13px">Between sizes? Size up for lehengas and draped styles. Unsure? We reply within minutes:</p>
+      <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+        <a class="btn btn-sm btn-solid" href="https://wa.me/{{ settings.brand_whatsapp | remove: '+' }}?text={{ 'Hi! I need help choosing my size.' | url_encode }}" target="_blank" rel="noopener"><span>WhatsApp us</span></a>
+        <button class="btn btn-sm" data-action="close-modal" type="button"><span>Close</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toasts" aria-live="polite"></div>
+
+  <!-- WhatsApp -->
+  {% if settings.brand_whatsapp != blank %}
+    <a class="wa-fab"
+       href="https://wa.me/{{ settings.brand_whatsapp | remove: '+' | remove: ' ' }}?text={{ settings.wa_greeting | default: 'Hi Label Surbhee!' | url_encode }}"
+       target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.4 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4l.9 2.2c.1.2.1.4 0 .6l-.4.6-.5.5c-.1.2-.3.3-.1.6.2.3.8 1.4 1.8 2.3 1.3 1.2 2.3 1.5 2.6 1.6.3.1.5.1.7-.1l1-1.2c.2-.3.4-.2.7-.1l2.1 1c.3.2.5.3.6.4.1.2.1.8-.1 1.3z"/></svg>
+      <span class="lbl"><b>{{ settings.wa_label_1 | default: 'Need help?' }}</b>{{ settings.wa_label_2 | default: 'Chat with us' }}</span>
+    </a>
+  {% endif %}
+
+  <!-- global data for theme.js -->
+  <script type="application/json" id="LSThemeConfig">
+    {
+      "routes": {
+        "cart_add": "{{ routes.cart_add_url }}",
+        "cart_change": "{{ routes.cart_change_url }}",
+        "cart_update": "{{ routes.cart_update_url }}",
+        "cart_url": "{{ routes.cart_url }}",
+        "search_url": "{{ routes.search_url }}",
+        "predictive_search_url": "{{ routes.predictive_search_url }}"
+      },
+      "moneyFormat": {{ shop.money_format | json }},
+      "currency": {{ cart.currency.iso_code | json }},
+      "freeShippingOver": {{ settings.free_shipping_threshold | times: 100 }},
+      "freeShippingLabel": {{ settings.free_shipping_threshold | times: 100 | money | json }},
+      "whatsapp": {{ settings.brand_whatsapp | remove: '+' | remove: ' ' | json }}
+    }
+  </script>
+
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+</body>
+</html>

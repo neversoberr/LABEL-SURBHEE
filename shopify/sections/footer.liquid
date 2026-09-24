@@ -1,0 +1,152 @@
+{%- comment -%} Site footer — brand column, link columns, payments, legal bar. {%- endcomment -%}
+
+<footer class="site">
+  <div class="f-top">
+    <div class="f-brand">
+      <a class="logo" href="{{ routes.root_url }}" style="font-size:19px">
+        {{ section.settings.logo_text }} <span class="dia">✦</span> {{ section.settings.logo_text_2 }}
+        <small>{{ section.settings.logo_tagline }}</small>
+      </a>
+      <p>{{ section.settings.blurb }}</p>
+      <div class="f-social">
+        {%- if settings.social_instagram_link != blank -%}<a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" aria-label="Instagram">IG</a>{%- endif -%}
+        {%- if settings.social_facebook_link != blank -%}<a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" aria-label="Facebook">FB</a>{%- endif -%}
+        {%- if settings.brand_whatsapp != blank -%}
+          <a href="https://wa.me/{{ settings.brand_whatsapp | remove: '+' | remove: ' ' }}" target="_blank" rel="noopener" aria-label="WhatsApp">WA</a>
+        {%- endif -%}
+      </div>
+      <div class="f-pay">
+        {%- assign methods = section.settings.payment_methods | split: ',' -%}
+        {%- for m in methods -%}<span>{{ m | strip }}</span>{%- endfor -%}
+      </div>
+    </div>
+
+    {%- for i in (1..4) -%}
+      {%- assign heading_key = 'linklist_' | append: i | append: '_heading' -%}
+      {%- assign list_key = 'linklist_' | append: i -%}
+      {%- assign list = section.settings[list_key] -%}
+      {%- if list != blank and list.links.size > 0 -%}
+        <div class="f-col">
+          <h5>{{ section.settings[heading_key] | default: list.title }}</h5>
+          <ul>
+            {%- for link in list.links -%}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="f-bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }} · Mumbai · All rights reserved</span>
+    <div class="legal">
+      {%- for link in section.settings.legal_menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </div>
+    <span class="f-credit">
+      <span class="ln"></span><span class="st">✦</span> {{ section.settings.credit_text }}<span class="ln"></span>
+    </span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo — first word",
+      "default": "LABEL"
+    },
+    {
+      "type": "text",
+      "id": "logo_text_2",
+      "label": "Logo — second word",
+      "default": "SURBHEE"
+    },
+    {
+      "type": "text",
+      "id": "logo_tagline",
+      "label": "Logo tagline",
+      "default": "House of Maroon & Gold"
+    },
+    {
+      "type": "textarea",
+      "id": "blurb",
+      "label": "Brand blurb",
+      "default": "Bridal lehengas, festive couture and heirloom jewellery — cut and embroidered by hand in our Bandra West atelier."
+    },
+    {
+      "type": "text",
+      "id": "payment_methods",
+      "label": "Payment methods",
+      "info": "Comma separated",
+      "default": "UPI, Visa, Mastercard, RuPay, COD"
+    },
+    {
+      "type": "text",
+      "id": "credit_text",
+      "label": "Credit line",
+      "default": "Created By Deerflow"
+    },
+    {
+      "type": "header",
+      "content": "Link columns"
+    },
+    {
+      "type": "text",
+      "id": "linklist_1_heading",
+      "label": "Column 1 heading",
+      "default": "Shop"
+    },
+    {
+      "type": "link_list",
+      "id": "linklist_1",
+      "label": "Column 1 menu",
+      "default": "footer"
+    },
+    {
+      "type": "text",
+      "id": "linklist_2_heading",
+      "label": "Column 2 heading",
+      "default": "Help"
+    },
+    {
+      "type": "link_list",
+      "id": "linklist_2",
+      "label": "Column 2 menu"
+    },
+    {
+      "type": "text",
+      "id": "linklist_3_heading",
+      "label": "Column 3 heading",
+      "default": "About"
+    },
+    {
+      "type": "link_list",
+      "id": "linklist_3",
+      "label": "Column 3 menu"
+    },
+    {
+      "type": "text",
+      "id": "linklist_4_heading",
+      "label": "Column 4 heading",
+      "default": "Follow Us"
+    },
+    {
+      "type": "link_list",
+      "id": "linklist_4",
+      "label": "Column 4 menu"
+    },
+    {
+      "type": "link_list",
+      "id": "legal_menu",
+      "label": "Legal menu"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,6 @@
+{%- comment -%} Usage: {% render 'stars', rating: 4.6 %}{%- endcomment -%}
+{%- assign r = rating | plus: 0 -%}
+{%- assign full = r | round -%}
+{%- if r > 0 -%}
+  <span class="stars" aria-hidden="true">{% for i in (1..full) %}★{% endfor %}<span class="off">{% for i in (full..4) %}★{% endfor %}</span></span>
+{%- endif -%}

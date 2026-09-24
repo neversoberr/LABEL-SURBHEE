@@ -1,0 +1,20 @@
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">{{ article.published_at | date: '%d %B %Y' }}</p>
+    <h1>{{ article.title }}</h1>
+  </div>
+  {%- if article.image -%}
+    <div style="max-width:1000px;margin:5vh auto">
+      <img src="{{ article.image | image_url: width: 1400 }}" alt="{{ article.title | escape }}" style="width:100%">
+    </div>
+  {%- endif -%}
+  <div class="article-body prose">{{ article.content }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,38 @@
+{%- comment -%} Editorial image + text split. {%- endcomment -%}
+<section class="wrap" style="padding:{% if section.settings.tight %}2vh{% else %}4vh{% endif %} 0 {% if section.settings.tight %}2vh{% else %}4vh{% endif %}">
+  <div class="split rv">
+    <div class="split-img">
+      {%- if section.settings.image != blank -%}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" loading="lazy">
+      {%- else -%}
+        <img src="{{ 'about.jpg' | asset_url }}" alt="{{ section.settings.heading | escape }}" loading="lazy">
+      {%- endif -%}
+    </div>
+    <div class="split-txt">
+      {%- if section.settings.kicker != blank -%}<p class="kicker">{{ section.settings.kicker }}</p>{%- endif -%}
+      {%- if section.settings.lead != blank -%}<p class="lead">{{ section.settings.lead }}</p>{%- endif -%}
+      {%- if section.settings.text != blank -%}<p class="muted" style="font-size:14.5px">{{ section.settings.text }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <div><a class="btn" href="{{ section.settings.button_url }}"><span>{{ section.settings.button_label }}</span></a></div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial split",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The World of Label Surbhee" },
+    { "type": "textarea", "id": "lead", "label": "Lead quote", "default": "“We don’t design for trends. We design for the woman who will still be wearing it in ten years — and remember how it felt the first time.”" },
+    { "type": "textarea", "id": "text", "label": "Body", "default": "A Mumbai atelier working in deep maroon and antique gold — bridal lehengas, festive couture and heirloom jewellery, cut and embroidered by hand." },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Falls back to the theme's about.jpg" },
+    { "type": "text", "id": "heading", "label": "Image alt text", "default": "The Label Surbhee atelier" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Read our story" },
+    { "type": "url", "id": "button_url", "label": "Button link" },
+    { "type": "checkbox", "id": "tight", "label": "Tighten spacing", "default": false }
+  ],
+  "presets": [{ "name": "Editorial split" }]
+}
+{% endschema %}

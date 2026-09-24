@@ -1,0 +1,41 @@
+{%- comment -%} Newsletter sign-up (Shopify customer form). {%- endcomment -%}
+<section class="wrap" style="padding-bottom:10vh">
+  <div class="news rv">
+    <p class="kicker center" style="justify-content:center">{{ section.settings.kicker }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p class="lead">{{ section.settings.text }}</p>
+
+    {%- form 'customer', id: 'NewsletterForm', class: 'news-flex' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input
+        type="email"
+        name="contact[email]"
+        value="{{ form.email }}"
+        placeholder="{{ section.settings.placeholder }}"
+        aria-label="Email"
+        required>
+      <button type="submit" name="commit">{{ section.settings.button_label }}</button>
+      {%- if form.posted_successfully? -%}
+        <p class="shopify-form-msg success" style="flex-basis:100%;margin-top:12px">{{ section.settings.success_text }}</p>
+      {%- elsif form.errors -%}
+        <p class="shopify-form-msg error" style="flex-basis:100%;margin-top:12px">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "The Inner Circle" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Join the list" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Early access to drops, bridal previews and festival sales — plus 10% off your first order." },
+    { "type": "text", "id": "placeholder", "label": "Placeholder", "default": "Your email address" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Subscribe" },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "You’re on the list — welcome to the house." }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

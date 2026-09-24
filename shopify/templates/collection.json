@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "kicker": "Shop",
+        "show_description": true,
+        "products_per_page": 24,
+        "show_quick_add": true,
+        "empty_text": "This edit is still being pressed.",
+        "category_menu": "category-tabs"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

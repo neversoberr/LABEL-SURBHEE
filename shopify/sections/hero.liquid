@@ -1,0 +1,58 @@
+{%- comment -%} Homepage hero — split image banner with animated headline + marquee seal. {%- endcomment -%}
+<section class="hero">
+  <div class="hero-txt">
+    {%- if section.settings.kicker != blank -%}
+      <p class="kicker" style="animation:fadeUp .8s .15s both">{{ section.settings.kicker }}</p>
+    {%- endif -%}
+    <h1>
+      <span class="l"><i>{{ section.settings.title }}</i></span>
+      {%- if section.settings.title_accent != blank -%}
+        <span class="l"><i>{{ section.settings.title_accent }}</i></span>
+      {%- endif -%}
+    </h1>
+    {%- if section.settings.sub != blank -%}
+      <p class="sub">{{ section.settings.sub }}</p>
+    {%- endif -%}
+    <div class="ctas">
+      {%- if section.settings.cta_1_label != blank -%}
+        <a class="btn btn-solid" href="{{ section.settings.cta_1_url }}"><span>{{ section.settings.cta_1_label }}</span></a>
+      {%- endif -%}
+      {%- if section.settings.cta_2_label != blank -%}
+        <a class="btn" href="{{ section.settings.cta_2_url }}"><span>{{ section.settings.cta_2_label }}</span></a>
+      {%- endif -%}
+    </div>
+  </div>
+  <div class="hero-img">
+    {%- if section.settings.image != blank -%}
+      <img src="{{ section.settings.image | image_url: width: 1600 }}" alt="{{ section.settings.title | escape }}" width="1600" height="1200">
+    {%- else -%}
+      <img src="{{ 'hero.jpg' | asset_url }}" alt="{{ section.settings.title | escape }}" width="1600" height="1200">
+    {%- endif -%}
+    {%- if section.settings.show_seal -%}
+      <div class="hero-seal"><div><b>{{ section.settings.seal_mark }}</b>{{ section.settings.seal_text | newline_to_br }}</div></div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "tag": "section",
+  "class": "section-hero",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "New Season · 2026" },
+    { "type": "text", "id": "title", "label": "Headline line 1", "default": "Draped in Maroon." },
+    { "type": "text", "id": "title_accent", "label": "Headline line 2 (accent)", "default": "Finished in Gold." },
+    { "type": "textarea", "id": "sub", "label": "Sub-heading", "default": "Bridal lehengas, festive couture and heirloom jewellery — cut and embroidered by hand in our Bandra West atelier." },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Falls back to the theme's hero.jpg" },
+    { "type": "text", "id": "cta_1_label", "label": "Primary button label", "default": "Shop new arrivals" },
+    { "type": "url", "id": "cta_1_url", "label": "Primary button link" },
+    { "type": "text", "id": "cta_2_label", "label": "Secondary button label", "default": "The bridal edit" },
+    { "type": "url", "id": "cta_2_url", "label": "Secondary button link" },
+    { "type": "checkbox", "id": "show_seal", "label": "Show rotating seal", "default": true },
+    { "type": "text", "id": "seal_mark", "label": "Seal mark", "default": "LS" },
+    { "type": "textarea", "id": "seal_text", "label": "Seal text", "default": "Est. 2026\nMumbai" }
+  ],
+  "presets": [{ "name": "Hero banner" }]
+}
+{% endschema %}

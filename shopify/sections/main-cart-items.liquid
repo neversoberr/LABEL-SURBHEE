@@ -1,0 +1,89 @@
+{%- comment -%} Cart page. {%- endcomment -%}
+<div class="wrap">
+  {% render 'breadcrumbs', crumb_1_title: 'Bag' %}
+
+  {%- if cart.item_count == 0 -%}
+    <div class="cart-empty-wrap">
+      <div class="empty">
+        <span class="orn">✦</span>
+        <p>Your bag is empty.</p>
+        <a class="btn" href="{{ routes.all_products_collection_url }}"><span>Shop now</span></a>
+      </div>
+    </div>
+  {%- else -%}
+    {%- form 'cart', cart, id: 'cart-page-form' -%}
+      <div class="cart-page">
+        <div>
+          <table class="cart-table">
+            <thead>
+              <tr><th>Piece</th><th>Quantity</th><th style="text-align:right">Total</th></tr>
+            </thead>
+            <tbody>
+              {%- for item in cart.items -%}
+                <tr data-line="{{ forloop.index }}">
+                  <td>
+                    <div class="ci">
+                      <a href="{{ item.url }}">
+                        {%- if item.image -%}
+                          <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}" loading="lazy">
+                        {%- endif -%}
+                      </a>
+                      <div>
+                        <h5><a href="{{ item.url }}">{{ item.product.title }}</a></h5>
+                        <div class="meta">{{ item.product.type }}{% unless item.product.has_only_default_variant %} · {{ item.variant.title }}{% endunless %}</div>
+                        <div class="meta">{{ item.final_price | money_without_trailing_zeros }} each</div>
+                        <a class="rm" href="{{ item.url_to_remove }}">Remove</a>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="qty">
+                      <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity={{ item.quantity | minus: 1 }}" aria-label="Decrease">−</a>
+                      <span>{{ item.quantity }}</span>
+                      <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity={{ item.quantity | plus: 1 }}" aria-label="Increase">+</a>
+                    </div>
+                  </td>
+                  <td class="cart-line-price">{{ item.final_line_price | money_without_trailing_zeros }}</td>
+                </tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+
+          <div class="cart-actions">
+            <a class="btn btn-sm" href="{{ routes.all_products_collection_url }}"><span>Continue shopping</span></a>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <h4>Order summary</h4>
+          {%- if section.settings.note != blank -%}
+            <p class="ship-note" style="margin-bottom:16px">{{ section.settings.note }}</p>
+          {%- endif -%}
+          <div class="trow"><span>Subtotal</span><span>{{ cart.total_price | money_without_trailing_zeros }}</span></div>
+          {%- if cart.total_discount > 0 -%}
+            <div class="trow"><span>Discount</span><span class="gold">− {{ cart.total_discount | money_without_trailing_zeros }}</span></div>
+          {%- endif -%}
+          <div class="trow"><span>Shipping</span><span class="gold">Calculated at checkout</span></div>
+          <div class="trow total"><span>Total</span><span class="gold">{{ cart.total_price | money_without_trailing_zeros }}</span></div>
+
+          <button class="btn btn-solid" type="submit" name="checkout"><span>Proceed to checkout</span></button>
+
+          <p class="ship-note" style="display:flex;gap:8px;align-items:center;margin-top:16px">
+            {% render 'icon', icon: 'wa' %}
+            <a href="https://wa.me/{{ settings.brand_whatsapp | remove: '+' | remove: ' ' }}?text={{ 'Hi Label Surbhee! I need help with my checkout.' | url_encode }}" target="_blank" rel="noopener">Need help? Chat with us</a>
+          </p>
+        </div>
+      </div>
+    {%- endform -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart page",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "note", "label": "Note", "default": "Discounts and shipping are applied at checkout." }
+  ]
+}
+{% endschema %}

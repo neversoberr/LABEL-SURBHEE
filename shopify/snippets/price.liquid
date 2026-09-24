@@ -1,0 +1,11 @@
+{%- comment -%}
+  Usage: {% render 'price', price: product.price, compare_at: product.compare_at_price %}
+  Renders the maroon/gold price row used across cards and product pages.
+{%- endcomment -%}
+{%- assign p = price | plus: 0 -%}
+{%- assign c = compare_at | plus: 0 -%}
+<span class="price">{{ p | money_without_trailing_zeros }}</span>
+{%- if c > p -%}
+  <s>{{ c | money_without_trailing_zeros }}</s>
+  <span class="off">{{ c | minus: p | times: 100.0 | divided_by: c | round }}% off</span>
+{%- endif -%}

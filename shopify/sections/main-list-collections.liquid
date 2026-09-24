@@ -1,0 +1,36 @@
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">Editorial</p>
+    <h1>Collections</h1>
+    <p class="lead">{{ section.settings.subtitle }}</p>
+  </div>
+  <div style="padding:5vh 0 8vh">
+    <div class="collgrid">
+      {%- for collection in collections -%}
+        {%- if collection.handle == 'all' or collection.products_count == 0 -%}{%- continue -%}{%- endif -%}
+        <a class="citem {% if forloop.index == 1 %}tall{% endif %} {% if forloop.index == 4 %}wide{% endif %} rv" href="{{ collection.url }}">
+          {%- if collection.image or collection.products.first.featured_image -%}
+            {%- assign img = collection.image | default: collection.products.first.featured_image -%}
+            <img src="{{ img | image_url: width: 900 }}" alt="{{ collection.title | escape }}" loading="lazy">
+          {%- endif -%}
+          <span class="arr">↗</span>
+          <div class="in">
+            <span class="k">Collection</span>
+            <h3>{{ collection.title }}</h3>
+            <p>{{ collection.description | strip_html | truncate: 80 }}</p>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Eight ways to wear the house." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,79 @@
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">Order {{ order.name }}</p>
+    <h1>Order details</h1>
+    <p class="lead">Placed {{ order.created_at | date: '%d %B %Y' }}</p>
+  </div>
+
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 0 4vh">
+    <a class="btn btn-sm" href="{{ routes.account_url }}"><span>All orders</span></a>
+  </div>
+
+  <div class="cart-page">
+    <div>
+      <table class="cart-table">
+        <thead><tr><th>Piece</th><th>Quantity</th><th style="text-align:right">Total</th></tr></thead>
+        <tbody>
+          {%- for line_item in order.line_items -%}
+            <tr>
+              <td>
+                <div class="ci">
+                  <a href="{{ line_item.product.url }}">
+                    {%- if line_item.image -%}
+                      <img src="{{ line_item.image | image_url: width: 240 }}" alt="{{ line_item.title | escape }}" loading="lazy">
+                    {%- endif -%}
+                  </a>
+                  <div>
+                    <h5><a href="{{ line_item.product.url }}">{{ line_item.title }}</a></h5>
+                    <div class="meta">{{ line_item.variant.title }}</div>
+                    <div class="meta">{{ line_item.final_price | money_without_trailing_zeros }} each</div>
+                  </div>
+                </div>
+              </td>
+              <td>{{ line_item.quantity }}</td>
+              <td class="cart-line-price">{{ line_item.final_line_price | money_without_trailing_zeros }}</td>
+            </tr>
+          {%- endfor -%}
+        </tbody>
+      </table>
+
+      {%- if order.note != blank -%}
+        <p class="muted" style="margin-top:22px;font-size:13.5px"><b>Note:</b> {{ order.note }}</p>
+      {%- endif -%}
+    </div>
+
+    <div>
+      <div class="cart-summary">
+        <h4>Summary</h4>
+        <div class="trow"><span>Status</span><span class="gold">{{ order.fulfillment_status_label }}</span></div>
+        <div class="trow"><span>Payment</span><span>{{ order.financial_status_label }}</span></div>
+        <div class="trow"><span>Subtotal</span><span>{{ order.subtotal_price | money_without_trailing_zeros }}</span></div>
+        {%- for discount in order.discounts -%}
+          <div class="trow"><span>{{ discount.code }}</span><span class="gold">− {{ discount.savings | money_without_trailing_zeros }}</span></div>
+        {%- endfor -%}
+        {%- for shipping_method in order.shipping_methods -%}
+          <div class="trow"><span>Shipping · {{ shipping_method.title }}</span><span>{{ shipping_method.price | money_without_trailing_zeros }}</span></div>
+        {%- endfor -%}
+        <div class="trow total"><span>Total</span><span class="gold">{{ order.total_price | money_without_trailing_zeros }}</span></div>
+      </div>
+
+      <div class="cart-summary" style="margin-top:20px">
+        <h4>Delivery address</h4>
+        <p class="muted" style="font-size:14px;line-height:1.8">{{ order.shipping_address | format_address }}</p>
+      </div>
+
+      <p class="ship-note" style="display:flex;gap:8px;align-items:center;margin-top:18px">
+        {% render 'icon', icon: 'wa' %}
+        <a href="https://wa.me/{{ settings.brand_whatsapp | remove: '+' | remove: ' ' }}?text={{ 'Hi Label Surbhee! I have a question about order ' | append: order.name | url_encode }}" target="_blank" rel="noopener">Ask about this order</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Order",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

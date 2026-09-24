@@ -1,0 +1,93 @@
+{%- comment -%}
+  Product card — port of the .pcard markup from the static storefront.
+
+  Usage:
+    {% render 'product-card', product: product, index: forloop.index0, show_quick_add: true %}
+
+  Badges: sold out · sale · new (tag "new") · bestseller (tag "bestseller")
+  Rating: metafields.custom.rating / reviews.rating (optional — hidden if absent)
+{%- endcomment -%}
+
+{%- assign ls_index = index | default: 0 -%}
+{%- assign ls_delay = ls_index | modulo: 4 | times: 70 -%}
+
+{%- assign ls_rating = product.metafields.custom.rating.value -%}
+{%- if ls_rating == blank -%}{%- assign ls_rating = product.metafields.reviews.rating.value -%}{%- endif -%}
+{%- if ls_rating == blank -%}{%- assign ls_rating = product.metafields.reviews.rating -%}{%- endif -%}
+{%- assign ls_rating = ls_rating | plus: 0 -%}
+{%- assign ls_rcount = product.metafields.custom.review_count.value | default: product.metafields.reviews.rating_count -%}
+
+{%- assign first_option = product.options_with_values.first -%}
+
+<a class="pcard rv" style="transition-delay:{{ ls_delay }}ms" href="{{ product.url | within: collection }}">
+  <div class="pcard-img">
+    {%- if product == blank -%}
+      {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- elsif product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        srcset="{{ product.featured_image | image_url: width: 300 }} 300w,
+                {{ product.featured_image | image_url: width: 600 }} 600w,
+                {{ product.featured_image | image_url: width: 900 }} 900w"
+        sizes="(max-width: 640px) 46vw, (max-width: 1100px) 30vw, 23vw"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        loading="lazy"
+        width="600" height="750">
+    {%- else -%}
+      {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+
+    {%- if product.available == false -%}
+      <span class="badge b-out">Sold Out</span>
+    {%- else -%}
+      {%- if product.compare_at_price > product.price -%}
+        <span class="badge b-sale" style="top:12px;left:auto;right:56px">Sale</span>
+      {%- endif -%}
+      {%- if product.tags contains 'new' -%}
+        <span class="badge b-new">New</span>
+      {%- elsif product.tags contains 'bestseller' -%}
+        <span class="badge b-new" style="top:46px">Bestseller</span>
+      {%- endif -%}
+    {%- endif -%}
+
+    <button class="heart" data-wish="{{ product.handle }}" aria-label="Save {{ product.title | escape }} to wishlist" type="button">
+      {% render 'icon', icon: 'heart' %}
+    </button>
+
+    {%- if product.available and show_quick_add != false -%}
+      {%- if product.variants.size == 1 -%}
+        <div class="quickadd">
+          <button class="qadd" type="button" data-add-to-cart data-variant-id="{{ product.first_available_variant.id }}">Add to bag</button>
+        </div>
+      {%- elsif product.options.size == 1 and first_option.name == 'Size' -%}
+        <div class="quickadd">
+          {%- for variant in product.variants -%}
+            {%- if variant.available -%}
+              <button class="qsize" type="button" data-add-to-cart data-variant-id="{{ variant.id }}">{{ variant.title }}</button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="quickadd"><button class="qadd" type="button" data-quick-view="{{ product.url }}">Choose options</button></div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+
+  <div class="pcard-info">
+    <h3>{{ product.title | default: 'Sample product' }}</h3>
+    <div class="cat">{{ product.type | default: '&nbsp;' }}</div>
+    <div class="prow">
+      {%- if product == blank -%}
+        <span class="price">₹9,999</span>
+      {%- else -%}
+        {% render 'price', price: product.price, compare_at: product.compare_at_price %}
+      {%- endif -%}
+    </div>
+    {%- if ls_rating > 0 -%}
+      <div class="rate">
+        {% render 'stars', rating: ls_rating %}
+        <span>{{ ls_rating | round: 1 }}{% if ls_rcount != blank %} · {{ ls_rcount }} reviews{% endif %}</span>
+      </div>
+    {%- endif -%}
+  </div>
+</a>

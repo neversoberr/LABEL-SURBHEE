@@ -1,0 +1,101 @@
+{%- comment -%}
+  Collection / shop template.
+  Renders the page hero, breadcrumbs, category tabs, sort control,
+  product grid and pagination.
+{%- endcomment -%}
+
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+{%- assign per_page = section.settings.products_per_page -%}
+
+<div class="wrap">
+  <div class="page-hero" style="padding-bottom:4vh">
+    <p class="kicker center">{{ section.settings.kicker | default: 'Shop' }}</p>
+    <h1>{{ collection.title }}</h1>
+    {%- if collection.description != blank and section.settings.show_description -%}
+      <p class="lead">{{ collection.description }}</p>
+    {%- endif -%}
+  </div>
+
+  {% render 'breadcrumbs', crumb_1_title: 'Shop', crumb_1_url: routes.all_products_collection_url, crumb_2_title: collection.title %}
+
+  <div class="toolbar">
+    {%- if section.settings.category_menu != blank -%}
+      {%- assign cat_menu = section.settings.category_menu -%}
+      <div class="subs">
+        {%- for link in cat_menu.links -%}
+          <a class="sub{% if link.active %} on{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="right">
+      <span class="count">{{ collection.products_count }} piece{% if collection.products_count == 1 %}{% else %}s{% endif %}</span>
+      <select id="SortBy" data-sort-by aria-label="Sort products">
+        {%- for option in collection.sort_options -%}
+          <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected="selected"{% endif %}>{{ option.name | escape }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+  </div>
+
+  {%- if section.settings.sub_menu != blank -%}
+    {%- assign sub_menu = section.settings.sub_menu -%}
+    {%- if sub_menu.links.size > 0 -%}
+      <div class="subs" style="margin-top:14px">
+        {%- for link in sub_menu.links -%}
+          <a class="sub{% if link.active %} on{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+
+  <div style="padding:36px 0 6vh">
+    {%- paginate collection.products by per_page -%}
+      {%- if collection.products.size == 0 -%}
+        <div class="empty">
+          <span class="orn">✦</span>
+          <p>{{ section.settings.empty_text }}</p>
+          <a class="btn btn-sm" href="{{ routes.all_products_collection_url }}"><span>Shop everything</span></a>
+        </div>
+      {%- else -%}
+        <div class="pgrid wide" id="ProductGrid">
+          {%- for product in collection.products -%}
+            {% render 'product-card', product: product, index: forloop.index0, show_quick_add: section.settings.show_quick_add %}
+          {%- endfor -%}
+        </div>
+
+        {%- if paginate.pages > 1 -%}
+          <nav class="pagination" aria-label="Pagination">
+            {%- if paginate.previous -%}<a class="prev" href="{{ paginate.previous.url }}" aria-label="Previous page">←</a>{%- endif -%}
+            {%- for part in paginate.parts -%}
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {%- elsif part.title == '&hellip;' -%}
+                <span class="current" style="border-color:transparent">{{ part.title }}</span>
+              {%- else -%}
+                <span class="current" aria-current="page">{{ part.title }}</span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if paginate.next -%}<a class="next" href="{{ paginate.next.url }}" aria-label="Next page">→</a>{%- endif -%}
+          </nav>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection banner and grid",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Shop" },
+    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    { "type": "link_list", "id": "category_menu", "label": "Category tabs", "info": "Clothing · Lehengas · Jewellery · New · Sale" },
+    { "type": "link_list", "id": "sub_menu", "label": "Sub-category tabs", "info": "e.g. Bridal Lehengas, Festive Lehengas …" },
+    { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 24 },
+    { "type": "checkbox", "id": "show_quick_add", "label": "Show quick add", "default": true },
+    { "type": "text", "id": "empty_text", "label": "Empty collection text", "default": "This edit is still being pressed." }
+  ]
+}
+{% endschema %}

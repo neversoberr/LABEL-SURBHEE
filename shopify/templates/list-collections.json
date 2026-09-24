@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": { "subtitle": "Eight ways to wear the house." }
+    }
+  },
+  "order": ["main"]
+}

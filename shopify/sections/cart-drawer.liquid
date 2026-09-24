@@ -1,0 +1,85 @@
+{%- comment -%}
+  Slide-out bag. Re-rendered through the Section Rendering API
+  (/?section_id=cart-drawer) by theme.js after every cart change.
+{%- endcomment -%}
+
+{%- assign threshold = settings.free_shipping_threshold | times: 100 -%}
+{%- assign remaining = threshold | minus: cart.total_price -%}
+
+<aside class="drawer" id="drawer" aria-label="Shopping bag" data-cart-drawer>
+  <div class="dr-head">
+    <h3>Your Bag</h3>
+    <button data-action="close-drawer" style="font-size:20px;color:var(--gold)" aria-label="Close bag" type="button">✕</button>
+  </div>
+
+  <div class="dr-body" id="dr-body">
+    {%- if cart.item_count == 0 -%}
+      <div class="dr-empty">
+        <span class="orn">❖</span>
+        <p class="lead" style="font-size:17px">Your bag is empty.</p>
+        <a class="btn btn-sm" href="{{ routes.all_products_collection_url }}" data-action="close-drawer"><span>Shop new arrivals</span></a>
+      </div>
+    {%- else -%}
+      {%- for item in cart.items -%}
+        <div class="ci" data-line="{{ forloop.index }}">
+          <a href="{{ item.url }}">
+            {%- if item.image -%}
+              <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" loading="lazy">
+            {%- endif -%}
+          </a>
+          <div>
+            <h5><a href="{{ item.url }}">{{ item.product.title }}</a></h5>
+            <div class="meta">
+              {{ item.product.type }}
+              {%- unless item.product.has_only_default_variant and item.variant.title contains 'Default' -%} · {{ item.variant.title }}{%- endunless -%}
+            </div>
+            <div class="qty">
+              <button type="button" data-cart-qty data-line="{{ forloop.index }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Decrease">−</button>
+              <span>{{ item.quantity }}</span>
+              <button type="button" data-cart-qty data-line="{{ forloop.index }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="Increase">+</button>
+            </div>
+          </div>
+          <div>
+            <div class="pr">{{ item.final_line_price | money_without_trailing_zeros }}</div>
+            <button class="rm" type="button" data-cart-qty data-line="{{ forloop.index }}" data-qty="0">Remove</button>
+          </div>
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <div class="dr-foot" id="dr-foot">
+    {%- if cart.item_count > 0 -%}
+      {%- if remaining > 0 -%}
+        <p class="ship-note">Add {{ remaining | money_without_trailing_zeros }} more for <span class="gold">free shipping</span>.</p>
+      {%- else -%}
+        <p class="ship-note"><span class="gold">Free shipping unlocked ✦</span></p>
+      {%- endif -%}
+
+      <div class="trow"><span>Subtotal</span><span>{{ cart.total_price | money_without_trailing_zeros }}</span></div>
+      {%- if cart.total_discount > 0 -%}
+        <div class="trow"><span>Discount</span><span class="gold">− {{ cart.total_discount | money_without_trailing_zeros }}</span></div>
+      {%- endif -%}
+      <div class="trow"><span>Shipping</span><span class="gold">Calculated at checkout</span></div>
+      <div class="trow total"><span>Total</span><span class="gold">{{ cart.total_price | money_without_trailing_zeros }}</span></div>
+
+      <a class="btn btn-solid" href="{{ routes.cart_url }}" style="width:100%;margin-top:14px"><span>View bag</span></a>
+      <a class="btn btn-solid" href="/checkout" style="width:100%;margin-top:10px"><span>Checkout</span></a>
+
+      <p class="ship-note" style="display:flex;gap:8px;align-items:center;margin-top:14px">
+        {% render 'icon', icon: 'wa' %}
+        <a href="https://wa.me/{{ settings.brand_whatsapp | remove: '+' | remove: ' ' }}?text={{ 'Hi Label Surbhee! I need help with my order.' | url_encode }}" target="_blank" rel="noopener">Need help? Chat with us</a>
+      </p>
+    {%- else -%}
+      <a class="btn btn-solid" href="{{ routes.all_products_collection_url }}" style="width:100%" data-action="close-drawer"><span>Start shopping</span></a>
+    {%- endif -%}
+  </div>
+</aside>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "class": "section-cart-drawer",
+  "settings": []
+}
+{% endschema %}

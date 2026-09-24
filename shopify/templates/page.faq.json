@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "faq",
+      "blocks": {
+        "q-1": { "type": "faq", "settings": { "question": "How do I choose my size?", "answer": "Every clothing and lehenga page has a size guide with bust, waist and hip measurements. If you're between sizes, chat with us on WhatsApp and tell us your measurements — we'll tell you which to order, and exchanges within 7 days are free." } },
+        "q-2": { "type": "faq", "settings": { "question": "How long does delivery take?", "answer": "Metro cities: 2–4 days. Rest of India: 3–7 days. Express delivery (1–2 days) is available at checkout for ₹199. You'll get tracking by email and WhatsApp at every step." } },
+        "q-3": { "type": "faq", "settings": { "question": "Is shipping free?", "answer": "Yes — shipping is free on all orders above ₹1,999. Below that, standard shipping is ₹99 (₹149 to remote areas)." } },
+        "q-4": { "type": "faq", "settings": { "question": "Can I return or exchange?", "answer": "Returns and exchanges are accepted within 7 days of delivery on unworn items with tags attached. See our Returns & Exchange page for the full policy — including what applies to jewellery, lehengas and sale items." } },
+        "q-5": { "type": "faq", "settings": { "question": "Do you offer cash on delivery?", "answer": "Yes, COD is available across India on orders under ₹25,000. UPI, debit/credit cards and net banking are available at checkout." } },
+        "q-6": { "type": "faq", "settings": { "question": "Can I customise a lehenga for my wedding?", "answer": "Yes — our bridal lehengas can be customised in size, colour and embroidery placement. WhatsApp us from the product page with your date and measurements; we confirm timelines within 24 hours. Customised pieces are final sale." } },
+        "q-7": { "type": "faq", "settings": { "question": "How do I track my order?", "answer": "Use the tracking link in your shipping email, or ask us any time on WhatsApp with your order number — a human replies." } },
+        "q-8": { "type": "faq", "settings": { "question": "Are your products suitable for sensitive skin?", "answer": "Our jewellery is gold-plated alpaca with skin-safe coatings, and all fabrics are skin-tested before listing. If you have a known metal allergy, message us before ordering and we'll suggest the safest pieces." } }
+      },
+      "block_order": ["q-1", "q-2", "q-3", "q-4", "q-5", "q-6", "q-7", "q-8"],
+      "settings": { "kicker": "Questions, answered", "heading": "FAQ" }
+    }
+  },
+  "order": ["main"]
+}

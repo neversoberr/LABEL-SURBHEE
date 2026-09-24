@@ -1,0 +1,38 @@
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">Almost there</p>
+    <h1>Activate account</h1>
+  </div>
+  <div class="acct-layout">
+    {%- form 'activate_customer_password', id: 'ActivateAccountForm' -%}
+      <div class="cust-card">
+        <h3>Choose a password</h3>
+        {%- if form.errors -%}<div class="shopify-form-msg error">{{ form.errors | default_errors }}</div>{%- endif -%}
+        <div class="field">
+          <label for="ActivatePassword">Password</label>
+          <input id="ActivatePassword" type="password" name="customer[password]" required>
+        </div>
+        <div class="field">
+          <label for="ActivatePasswordConfirm">Confirm password</label>
+          <input id="ActivatePasswordConfirm" type="password" name="customer[password_confirmation]" required>
+        </div>
+        <button class="btn btn-solid" type="submit"><span>Activate</span></button>
+      </div>
+    {%- endform -%}
+    <div class="cust-card">
+      <h3>Or skip for now</h3>
+      <p class="muted" style="font-size:14px">You can activate later — we’ll keep your account waiting.</p>
+      {%- form 'decline_customer_invitation' -%}
+        <button class="btn" type="submit" style="margin-top:18px"><span>Decline invitation</span></button>
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Activate account",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

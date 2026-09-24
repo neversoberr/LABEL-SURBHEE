@@ -1,0 +1,31 @@
+{%- comment -%}
+  Wishlist page. Items are saved in localStorage (works for guests too) —
+  theme.js fills #wishlist-grid from the Product JS API.
+{%- endcomment -%}
+<div class="wrap">
+  <div class="page-hero">
+    <p class="kicker center">Saved</p>
+    <h1>{{ page.title | default: 'My Wishlist' }}</h1>
+    <p class="lead">Your saved pieces, in one place.</p>
+  </div>
+
+  <div style="padding:5vh 0 9vh">
+    <div class="pgrid wide" id="wishlist-grid">
+      <div class="empty wish-empty" style="grid-column:1/-1">
+        <span class="orn">✦</span>
+        <p>Saving a few favourites…</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:4vh">
+      <a class="btn btn-sm" href="{{ routes.all_products_collection_url }}"><span>Keep shopping</span></a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Wishlist",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

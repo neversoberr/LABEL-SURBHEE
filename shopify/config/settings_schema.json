@@ -1,0 +1,171 @@
+[
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "Tagline",
+        "default": "Draped in Maroon. Finished in Gold."
+      },
+      {
+        "type": "text",
+        "id": "brand_phone",
+        "label": "Phone",
+        "default": "+91 98200 12345"
+      },
+      {
+        "type": "text",
+        "id": "brand_whatsapp",
+        "label": "WhatsApp number",
+        "info": "Country code + number, no spaces or + sign. Used for the floating button and all chat links.",
+        "default": "919820012345"
+      },
+      {
+        "type": "text",
+        "id": "brand_email",
+        "label": "Email",
+        "default": "hello@labelsurbhee.com"
+      },
+      {
+        "type": "text",
+        "id": "brand_address",
+        "label": "Atelier address",
+        "default": "Atelier 7, Linking Road, Bandra West, Mumbai 400050"
+      },
+      {
+        "type": "text",
+        "id": "announcement_text",
+        "label": "Announcement bar text",
+        "default": "✦ Free shipping on orders over ₹1,999   ✦  COD available across India   ✦  7-day returns   ✦  Track every step on WhatsApp"
+      },
+      {
+        "type": "text",
+        "id": "topbar_left",
+        "label": "Top bar left link label",
+        "default": "Track Order"
+      }
+    ]
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_bg_deep",
+        "label": "Background deep",
+        "default": "#1f050c"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background",
+        "default": "#2b0811"
+      },
+      {
+        "type": "color",
+        "id": "color_bg_alt",
+        "label": "Background alt",
+        "default": "#330b16"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Gold",
+        "default": "#c9a24b"
+      },
+      {
+        "type": "color",
+        "id": "color_gold_light",
+        "label": "Gold light",
+        "default": "#e2c27e"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text (ivory)",
+        "default": "#f5edda"
+      },
+      {
+        "type": "color",
+        "id": "color_text_dim",
+        "label": "Text dim",
+        "default": "#c8bca1"
+      }
+    ]
+  },
+  {
+    "name": "Commerce",
+    "settings": [
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold (₹)",
+        "info": "Must match the shipping rate you configure in Settings → Shipping. Used for the cart-drawer progress message.",
+        "default": 1999
+      }
+    ]
+  },
+  {
+    "name": "Size guide",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "size_guide",
+        "label": "Size rows",
+        "info": "One row per line: Size|Bust|Waist|Hip (inches).",
+        "default": "S|32–34|26–28|34–36\nM|34–36|28–30|36–38\nL|36–38|30–32|38–40\nXL|38–40|32–34|40–42\nXXL|40–42|34–36|42–44"
+      }
+    ]
+  },
+  {
+    "name": "WhatsApp",
+    "settings": [
+      {
+        "type": "text",
+        "id": "wa_greeting",
+        "label": "Default chat message",
+        "default": "Hi Label Surbhee!"
+      },
+      {
+        "type": "text",
+        "id": "wa_label_1",
+        "label": "Floating button line 1",
+        "default": "Need help?"
+      },
+      {
+        "type": "text",
+        "id": "wa_label_2",
+        "label": "Floating button line 2",
+        "default": "Chat with us"
+      }
+    ]
+  },
+  {
+    "name": "Social & SEO",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram URL",
+        "default": "https://instagram.com/labelsurbhee"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook URL",
+        "default": "https://facebook.com/labelsurbhee"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "og_image",
+        "label": "Default social sharing image"
+      }
+    ]
+  }
+]
