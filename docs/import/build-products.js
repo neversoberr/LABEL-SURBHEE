@@ -5,10 +5,20 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 
-const src = fs.readFileSync(path.join(__dirname, '..', '..', 'js', 'data.js'), 'utf8');
+const candidatePaths = [
+  path.join(__dirname, '..', '..', 'site', 'js', 'data.js'),
+  path.join(__dirname, '..', '..', 'preview', 'js', 'data.js'),
+  path.join(__dirname, '..', '..', 'js', 'data.js')
+];
+const dataPath = candidatePaths.find(p => fs.existsSync(p));
+if (!dataPath) {
+  console.error('Could not find data.js in site/js, preview/js, or js/');
+  process.exit(1);
+}
+const src = fs.readFileSync(dataPath, 'utf8');
 const sandbox = {};
 vm.createContext(sandbox);
-vm.runInContext(src + '\nthis.__out = { PRODUCTS, BRAND };', sandbox);
+vm.runInContext(src.replace(/const /g, 'var ') + '\nthis.__out = { PRODUCTS, BRAND };', sandbox);
 const { PRODUCTS, BRAND } = sandbox.__out;
 
 const IMG_BASE = 'https://raw.githubusercontent.com/neversoberr/LABEL-SURBHEE/main/img/';

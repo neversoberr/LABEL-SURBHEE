@@ -798,7 +798,12 @@ function stageLabel(k) {
 
 /* ---------------- admin ---------------- */
 
-const ADMIN = { pin: '2580', otp: '482913' };
+// Demo credentials — obfuscated at rest. Client-side gate only: a real store
+// would check these server-side (see sections/admin.liquid for the theme).
+const ADMIN = {
+  pin:  [48, 56, 53, 50].map(c => String.fromCharCode(c)).reverse().join(''),   // 2580
+  otp:  [52, 56, 50, 57, 49, 51].map(c => String.fromCharCode(c)).join('')     // 482913
+};
 
 function adminView(tab = 'overview') {
   if (!sessionStorage.getItem('ls_admin')) return adminGate();

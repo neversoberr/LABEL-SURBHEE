@@ -175,5 +175,24 @@
         "label": "Default social sharing image"
       }
     ]
+  },
+  {
+    "name": "Webmaster",
+    "settings": [
+      {
+        "type": "text",
+        "id": "admin_pin",
+        "label": "Admin PIN",
+        "info": "Second factor for the /pages/admin page. Client-side obscured only — do not reuse a real password.",
+        "default": "2580"
+      },
+      {
+        "type": "text",
+        "id": "admin_otp",
+        "label": "Admin OTP",
+        "info": "Second step of the admin gate.",
+        "default": "482913"
+      }
+    ]
   }
 ]

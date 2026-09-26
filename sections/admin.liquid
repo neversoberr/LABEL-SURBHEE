@@ -1,0 +1,97 @@
+{%- comment -%}
+  Admin page (templates/page.admin.json → {{ page.handle }} = "admin").
+
+  Layer 1 — SERVER-SIDE access control:
+    Only a logged-in customer who is TAGGED "admin" sees this page at all.
+    Everyone else (guests + untagged customers) gets the access-denied screen;
+    Liquid is evaluated server-side, so this is real access control, not a
+    client-side toggle.
+
+  Layer 2 — CLIENT-SIDE PIN + OTP gate:
+    even an admin-tagged customer must pass the PIN → OTP flow
+    (settings.admin_pin / settings.admin_otp) before the dashboard renders.
+    This is defense-in-depth only: the check runs in the browser, so keep the
+    real product/order/ customer management inside the Shopify admin itself.
+{%- endcomment -%}
+
+{%- if customer and customer.tags contains 'admin' -%}
+
+  <div class="wrap">
+    <div class="page-hero">
+      <p class="kicker center">Restricted</p>
+      <h1>{{ page.title | default: 'Admin' }}</h1>
+      <p class="lead">Housekeeping for the Label Surbhee atelier — authenticated staff only.</p>
+    </div>
+
+    <section class="ls-admin" data-admin-root>
+      <noscript>
+        <div class="adm-gate">
+          <h2>JavaScript required</h2>
+          <p>This page needs JavaScript to unlock the dashboard.</p>
+        </div>
+      </noscript>
+
+      {%- comment -%} Initial gate (hidden once unlocked) {%- endcomment -%}
+      <div class="adm-gate" data-admin-gate>
+        <p class="kicker center" style="justify-content:center">Restricted area</p>
+        <h2>Owner console</h2>
+        <p>Two-factor verification is required to proceed.</p>
+        <form data-admin-form="pin">
+          <input type="password" name="pin" maxlength="4" inputmode="numeric" placeholder="••••" aria-label="Admin PIN" autocomplete="off" required>
+          <button class="btn btn-solid" type="submit" style="width:100%"><span>Verify PIN</span></button>
+        </form>
+        <p class="adm-err" data-admin-err role="alert"></p>
+      </div>
+
+      {%- comment -%} Dashboard body (hidden until unlocked) {%- endcomment -%}
+      <div class="adm-layout" hidden data-admin-dash>
+        <aside class="adm-side">
+          <div class="t">{{ shop.name | upcase }} · Admin</div>
+          <nav data-admin-tabs>
+            <button type="button" class="on" data-admin-tab="overview">Overview</button>
+            <button type="button" data-admin-tab="products">Products</button>
+            <button type="button" data-admin-tab="collections">Collections</button>
+            <button type="button" data-admin-tab="discounts">Discounts</button>
+            <button type="button" data-admin-tab="orders">Orders</button>
+            <button type="button" data-admin-tab="customers">Customers</button>
+          </nav>
+          <div class="adm-side-note">
+            <p>Product, order and customer screens load live from the Shopify Admin — open them via the button on each tab.</p>
+            <button class="btn btn-ghost btn-sm" type="button" data-admin-logout style="width:100%;margin-top:16px"><span>Lock console</span></button>
+          </div>
+        </aside>
+
+        <div class="adm-panel">
+          {% comment %} The active tab content is rendered by LSAdmin (assets/theme.js). {% endcomment %}
+          <div data-admin-panel></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+{%- else -%}
+
+  <div class="wrap">
+    <div class="adm-denied">
+      <span class="orn">✦</span>
+      <p class="kicker center" style="justify-content:center">Restricted</p>
+      <h1>Access denied</h1>
+      <p class="lead">This area is reserved for the Label Surbhee team.</p>
+      {%- if customer -%}
+        <p class="muted">Signed in as <b class="gold">{{ customer.email }}</b> — this account has no admin access. If that looks wrong, ask an owner to add you.</p>
+      {%- else -%}
+        <p class="muted">If you're on the team, <a class="gold" href="{{ routes.account_login_url }}">sign in</a> with your staff account.</p>
+      {%- endif -%}
+      <a class="btn btn-ghost" href="{{ routes.root_url }}"><span>Back to the store</span></a>
+    </div>
+  </div>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Admin",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

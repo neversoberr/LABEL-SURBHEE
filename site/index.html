@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LABEL SURBHEE — Bohemian Soul, Indian Heart.</title>
+  <meta name="description" content="Born in Jaipur, curated in Mumbai. 120-hour handcraft, 40+ artisans, 12k women empowered, 100% handcrafted prints, slow embroidery, and 24k gold-plated jewellery.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Google Fonts: Cormorant Garamond (Serif), Inter (Clean Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       01 TOP BAR (32px, bg #4A121F)
+       ============================================================ -->
+  <aside class="topbar">
+    <div class="wrap topbar-grid">
+      <div class="topbar-left">
+        <span>FREE SHIPPING OVER RS 5000 • COD • SSL SECURE</span>
+      </div>
+      <div class="topbar-center">
+        <a href="https://wa.me/917406800003?text=Hi%20Label%20Surbhee%2C%20I%20would%20like%20concierge%20styling%20assistance." target="_blank" rel="noopener">
+          <span>✦ WHATSAPP CONCIERGE +91 7406800003</span>
+        </a>
+      </div>
+      <div class="topbar-right">
+        <a href="#footer-contact" onclick="showToast('Atelier Flagship: Shop 4 Irla Road Vile Parle West Mumbai 400056')">STORE LOCATOR</a>
+        <span>|</span>
+        <button data-action="open-account" onclick="switchAccountTab('overview')">TRACK ORDER</button>
+        <span>|</span>
+        <a href="#editorial-story">JOURNAL</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       02 HEADER (80px, sticky top 0, backdrop blur 12px)
+       ============================================================ -->
+  <header class="site-header">
+    <div class="wrap header-grid">
+      <div class="header-left">
+        <div style="display:flex; align-items:center; border-bottom:1px solid var(--gold-dim); padding-bottom:4px;">
+          <svg style="width:14px; height:14px; stroke:var(--gold); margin-right:8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="header-search-input" type="text" placeholder="SEARCH SULTRY MAXIS, POLKI..." style="background:none; border:none; color:var(--text-ivory); font-size:10px; letter-spacing:0.18em; width:190px; text-transform:uppercase;">
+        </div>
+      </div>
+
+      <a href="#" class="brand-logo" aria-label="Label Surbhee Home">
+        <span class="brand-logo-text">LABEL SURBHEE</span>
+        <span class="brand-logo-tag">Bohemian Soul, Indian Heart.</span>
+      </a>
+
+      <div class="header-right">
+        <button class="header-action-btn" data-action="open-account">
+          <span>ACCOUNT</span>
+        </button>
+        <button class="icon-badge-btn" data-action="open-wishlist" aria-label="View Wishlist">
+          <svg style="width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span class="badge-count badge-wish-count" style="display:none">0</span>
+        </button>
+        <button class="icon-badge-btn" data-action="open-cart" aria-label="View Shopping Bag">
+          <svg style="width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="badge-count badge-cart-count" style="display:none">0</span>
+        </button>
+        <button class="btn-admin-pill" data-action="open-admin">
+          <span>✦ ADMIN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       03 NAVIGATION (52px, sticky top 80px) & 4-COL MEGA MENUS
+       ============================================================ -->
+  <nav class="site-nav">
+    <div class="wrap" style="height:100%;">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#" class="nav-link active">HOME</a></li>
+        <li class="nav-item">
+          <a href="#products-sec" class="nav-link" onclick="window.currentTabFilter='new'; renderProductGrid();">
+            <span class="nav-dot-gold"></span> NEW ARRIVALS
+          </a>
+        </li>
+        
+        <!-- CLOTHING MEGA MENU (4 COLS) -->
+        <li class="nav-item">
+          <a href="#products-sec" class="nav-link" onclick="window.currentTabFilter='dresses'; renderProductGrid();">CLOTHING</a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>Modern Silhouettes</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Dresses'; renderProductGrid();">Dresses</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Tops'; renderProductGrid();">Tops</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Co-ords'; renderProductGrid();">Co-ords</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Indo-Western &amp; Layers</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Indo-Western'; renderProductGrid();">Indo-Western</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Jackets'; renderProductGrid();">Jackets</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Bottoms'; renderProductGrid();">Bottoms</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Heirloom Drapes</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Ethnic'; renderProductGrid();">Ethnic Wear</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Festive'; renderProductGrid();">Festive Wear</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Sarees'; renderProductGrid();">Sarees</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Blouses'; renderProductGrid();">Blouses</a></li>
+              </ul>
+            </div>
+            <div class="mega-card-feature">
+              <img src="img/saira-maxi-1.webp" alt="Saira Maxi Feature">
+              <div class="mega-card-body">
+                <span class="kicker">Jaipur Craft</span>
+                <h5>Saira Boho Maxi</h5>
+                <a href="#products-sec" onclick="window.currentTabFilter='dresses'; renderProductGrid();">Shop All Clothing →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- LEHENGAS MEGA MENU (4 COLS) -->
+        <li class="nav-item">
+          <a href="#products-sec" class="nav-link" onclick="window.currentSearchQuery='Lehengas'; renderProductGrid();">LEHENGAS</a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>Bridal &amp; Festive</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Indo-Western Lehengas'; renderProductGrid();">Indo-Western Lehengas</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Festive Lehengas'; renderProductGrid();">Festive Lehengas</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Bridal Lehengas'; renderProductGrid();">Bridal Lehengas</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Designer Edits</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Designer Lehengas'; renderProductGrid();">Designer Lehengas</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Lehenga Sets'; renderProductGrid();">Lehenga Sets</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Skirt & Top'; renderProductGrid();">Skirt &amp; Top Sets</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Dupattas'; renderProductGrid();">Dupattas</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Bespoke Fitting</h4>
+              <p style="font-size:12.5px; color:var(--text-ivory-dim); line-height:1.7;">
+                Over 300 hours of handcrafted zardozi and antique tilla embroidery. Visit our Vile Parle West boutique for complimentary alterations.
+              </p>
+            </div>
+            <div class="mega-card-feature">
+              <img src="img/lehenga-editorial.jpg" alt="Bridal Lehenga Feature">
+              <div class="mega-card-body">
+                <span class="kicker">300 Hours Craft</span>
+                <h5>Royal Bridal Edit</h5>
+                <a href="#products-sec" onclick="window.currentSearchQuery='Lehengas'; renderProductGrid();">Explore Lehengas →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- JEWELLERY MEGA MENU (4 COLS) -->
+        <li class="nav-item">
+          <a href="#products-sec" class="nav-link" onclick="window.currentTabFilter='jewellery'; renderProductGrid();">JEWELLERY</a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>Ear &amp; Neck Adornments</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Earrings'; renderProductGrid();">Earrings</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Necklaces'; renderProductGrid();">Necklaces</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Rings'; renderProductGrid();">Rings</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Bracelets'; renderProductGrid();">Bracelets</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Statement &amp; Bridal</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Bangles'; renderProductGrid();">Bangles</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Statement'; renderProductGrid();">Statement Jewellery</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Bridal Jewellery'; renderProductGrid();">Bridal Jewellery</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Festive Jewellery'; renderProductGrid();">Festive Jewellery</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Artisan Guarantee</h4>
+              <p style="font-size:12px; color:var(--text-ivory-dim); line-height:1.7;">
+                <strong>24k Gold Plated</strong> with lifetime complimentary polishing guarantee. Hypoallergenic, nickel &amp; lead free.
+              </p>
+            </div>
+            <div class="mega-card-feature">
+              <img src="img/jhumka-gold.webp" alt="Gold Jhumka Feature">
+              <div class="mega-card-body">
+                <span class="kicker">24k Gold Plated</span>
+                <h5>Jharokha Jhumkas</h5>
+                <a href="#products-sec" onclick="window.currentTabFilter='jewellery'; renderProductGrid();">Explore Jewellery →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- COLLECTIONS MEGA MENU (4 COLS) -->
+        <li class="nav-item">
+          <a href="#featured-collections" class="nav-link">COLLECTIONS</a>
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>Seasonal Edits</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Rozana'; renderProductGrid();">Rozana (Everyday)</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Festive Edit'; renderProductGrid();">Festive Edit</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Wedding Edit'; renderProductGrid();">Wedding Edit</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>Bohemian Curations</h4>
+              <ul>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Boho/Gypsy'; renderProductGrid();">Boho / Gypsy</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Party Edit'; renderProductGrid();">Party Edit</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Beach/Resort'; renderProductGrid();">Beach / Resort</a></li>
+                <li><a href="#products-sec" onclick="window.currentSearchQuery='Limited Edition'; renderProductGrid();">Limited Edition</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <h4>The Atelier Story</h4>
+              <p style="font-size:12px; color:var(--text-ivory-dim); line-height:1.7;">
+                Born in Jaipur, curated in Mumbai. 40+ artisans, 12k women empowered, 100% handcrafted.
+              </p>
+            </div>
+            <div class="mega-card-feature">
+              <img src="img/boho-beach.webp" alt="Lookbook Beach">
+              <div class="mega-card-body">
+                <span class="kicker">Curated 2026</span>
+                <h5>The Bohemian Edit</h5>
+                <a href="#featured-collections">Browse All Edits →</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="#products-sec" class="nav-link nav-link-sale" onclick="window.currentTabFilter='bestsellers'; renderProductGrid();">SALE</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       04 HERO SECTION (80vh, Maroon Dot Pattern, 2-Col)
+       ============================================================ -->
+  <section class="hero-sec bg-maroon-dots">
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <span class="hero-eyebrow">NEW COLLECTION • ROZANA</span>
+        <h1 class="hero-h1">Bohemian Soul,<br><span class="sub-serif">Indian Heart.</span></h1>
+        <p class="hero-sub">Where heritage meets modern femininity — Hand-blocked prints, slow embroidery, and 24k gold-plated jewellery crafted over 120 artisan hours in our Jaipur workshop, curated in Mumbai.</p>
+        <div class="hero-ctas">
+          <a href="#products-sec" class="btn btn-gold">Shop Collection</a>
+          <a href="#lookbook-sec" class="btn btn-outline-gold">View Lookbook</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-media-wrap">
+          <img src="img/saira-maxi-1.webp" alt="Saira Boho Maxi Luxe 120 Hours Hand-blocked Jaipur Artisan Craft" loading="eager">
+          <div class="hero-floating-card">
+            <div class="hero-floating-info">
+              <h4>Saira Boho Maxi</h4>
+              <p>₹4,850 · Hand-Blocked Mulmul</p>
+            </div>
+            <span class="badge-artisan">120h Craft</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       05 TRUST STRIP (48px, #0A0A0A, 4 cols)
+       ============================================================ -->
+  <aside class="trust-strip">
+    <div class="wrap trust-grid">
+      <div class="trust-item">120-HOUR HANDCRAFT</div>
+      <div class="trust-item">COMPLIMENTARY ALTERATIONS VILE PARLE</div>
+      <div class="trust-item">PRIVATE VIDEO STYLING</div>
+      <div class="trust-item">LIFETIME JEWELLERY POLISHING</div>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+       06 SHOP BY CATEGORY (72px, #FFFBF5, 5 cols circles)
+       ============================================================ -->
+  <section class="cat-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>THE WORLD OF LABEL SURBHEE</h2>
+        <p class="sub-serif">Browse by fabrics, colours, and handcrafted bohemian silhouettes</p>
+      </div>
+
+      <div class="cat-circles-grid">
+        <div class="cat-circle-card" onclick="window.currentSearchQuery='Boho'; renderProductGrid(); location.hash='#products-sec';">
+          <div class="cat-circle-img"><img src="img/boho-beach.webp" alt="Bohemian Category" loading="lazy"></div>
+          <span class="cat-circle-label">Bohemian</span>
+        </div>
+        <div class="cat-circle-card" onclick="window.currentSearchQuery='Ethnic'; renderProductGrid(); location.hash='#products-sec';">
+          <div class="cat-circle-img"><img src="img/noor-kurta.webp" alt="Ethnic Category" loading="lazy"></div>
+          <span class="cat-circle-label">Ethnic</span>
+        </div>
+        <div class="cat-circle-card" onclick="window.currentSearchQuery='Dresses'; renderProductGrid(); location.hash='#products-sec';">
+          <div class="cat-circle-img"><img src="img/saira-maxi-2.webp" alt="Western Category" loading="lazy"></div>
+          <span class="cat-circle-label">Western</span>
+        </div>
+        <div class="cat-circle-card" onclick="window.currentSearchQuery='Resort'; renderProductGrid(); location.hash='#products-sec';">
+          <div class="cat-circle-img"><img src="img/saira-maxi-1.webp" alt="Resort Category" loading="lazy"></div>
+          <span class="cat-circle-label">Resort</span>
+        </div>
+        <div class="cat-circle-card" onclick="window.currentTabFilter='new'; renderProductGrid(); location.hash='#products-sec';">
+          <div class="cat-circle-img"><img src="img/jhumka-gold.webp" alt="New In Category" loading="lazy"></div>
+          <span class="cat-circle-label">New Arrivals</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       07 FEATURED COLLECTIONS (2 large 50/50 + 3 small 33%)
+       ============================================================ -->
+  <section class="featured-sec" id="featured-collections">
+    <div class="wrap">
+      <div class="featured-grid-top">
+        <div class="feat-banner tall" onclick="window.currentSearchQuery='Festive'; renderProductGrid(); location.hash='#products-sec';">
+          <img src="img/noor-kurta.webp" alt="Festive Gold Collection" loading="lazy">
+          <div class="feat-banner-overlay">
+            <span class="kicker">Heirloom Handcraft</span>
+            <h3>Festive Gold Edit</h3>
+            <span class="cta">Shop Now →</span>
+          </div>
+        </div>
+
+        <div class="feat-banner tall" onclick="window.currentSearchQuery='Rozana'; renderProductGrid(); location.hash='#products-sec';">
+          <img src="img/saira-maxi-1.webp" alt="Boho Everyday Collection" loading="lazy">
+          <div class="feat-banner-overlay">
+            <span class="kicker">From ₹2,950</span>
+            <h3>Boho Everyday Rozana</h3>
+            <span class="cta">Shop Now →</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-grid-bottom">
+        <div class="feat-banner small" onclick="window.currentSearchQuery='Ethnic'; renderProductGrid(); location.hash='#products-sec';">
+          <img src="img/saree-editorial.jpg" alt="Ethnic Sets" loading="lazy">
+          <div class="feat-banner-overlay">
+            <span class="kicker">Mulberry Silk</span>
+            <h3>Ethnic Sets &amp; Sarees</h3>
+            <span class="cta">Explore →</span>
+          </div>
+        </div>
+
+        <div class="feat-banner small" onclick="window.currentTabFilter='jewellery'; renderProductGrid(); location.hash='#products-sec';">
+          <img src="img/jhumka-gold.webp" alt="Jewellery Edit" loading="lazy">
+          <div class="feat-banner-overlay">
+            <span class="kicker">24k Gold Plated</span>
+            <h3>Jewellery Edit</h3>
+            <span class="cta">Explore →</span>
+          </div>
+        </div>
+
+        <div class="feat-banner small" onclick="window.currentTabFilter='new'; renderProductGrid(); location.hash='#products-sec';">
+          <img src="img/coords1.jpg" alt="New In Drop" loading="lazy">
+          <div class="feat-banner-overlay">
+            <span class="kicker">Limited Drop</span>
+            <h3>The New Drop</h3>
+            <span class="cta">Explore →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       08 NEW DROP / PRODUCT CATALOG (72px, 3-Col, Filters)
+       ============================================================ -->
+  <section class="new-drop-sec" id="products-sec">
+    <div class="wrap">
+      <div class="drop-header-flex">
+        <div class="drop-title-block">
+          <h2>NEW DROP</h2>
+          <p class="sub-serif">The latest handcrafted silhouettes from our Jaipur workshop</p>
+        </div>
+
+        <div class="drop-controls">
+          <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All (12)</button>
+            <button class="filter-tab" data-filter="dresses">Dresses (6)</button>
+            <button class="filter-tab" data-filter="jewellery">Jewellery (3)</button>
+            <button class="filter-tab" data-filter="bestsellers">Bestsellers (4)</button>
+            <button class="filter-tab" data-filter="new">New In (6)</button>
+          </div>
+
+          <select id="sort-select" class="sort-select" aria-label="Sort products">
+            <option value="featured">Sort: Featured</option>
+            <option value="low-high">Price: Low to High</option>
+            <option value="high-low">Price: High to Low</option>
+            <option value="newest">Newest First</option>
+            <option value="bestseller">Top Rated</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="products-layout-flex">
+        <!-- Sidebar Filters -->
+        <aside class="filter-sidebar">
+          <div class="filter-group">
+            <h4>Category</h4>
+            <ul class="filter-options-list">
+              <li><label class="filter-checkbox-label"><input type="checkbox" onchange="window.currentTabFilter=this.checked?'dresses':'all'; renderProductGrid();"> Dresses &amp; Tops <span class="count">(6)</span></label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox" onchange="window.currentTabFilter=this.checked?'jewellery':'all'; renderProductGrid();"> 24k Gold Jewellery <span class="count">(3)</span></label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox" onchange="window.currentSearchQuery=this.checked?'Lehengas':''; renderProductGrid();"> Royal Lehengas <span class="count">(2)</span></label></li>
+            </ul>
+          </div>
+
+          <div class="filter-group">
+            <h4>Size</h4>
+            <ul class="filter-options-list">
+              <li><label class="filter-checkbox-label"><input type="checkbox"> XS (Extra Small)</label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox"> S (Small)</label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox"> M (Medium)</label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox"> L (Large)</label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox"> XL / XXL</label></li>
+            </ul>
+          </div>
+
+          <div class="filter-group">
+            <h4>Artisan Fabric</h4>
+            <ul class="filter-options-list">
+              <li><label class="filter-checkbox-label"><input type="checkbox" onchange="window.currentSearchQuery=this.checked?'Mulmul':''; renderProductGrid();"> Pure Cotton Mulmul</label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox" onchange="window.currentSearchQuery=this.checked?'Silk':''; renderProductGrid();"> Chanderi &amp; Raw Silk</label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox" onchange="window.currentSearchQuery=this.checked?'Brass':''; renderProductGrid();"> 24k Gold Plated Brass</label></li>
+            </ul>
+          </div>
+
+          <div class="filter-group">
+            <h4>Availability</h4>
+            <ul class="filter-options-list">
+              <li><label class="filter-checkbox-label"><input type="checkbox" checked> In Stock</label></li>
+              <li><label class="filter-checkbox-label"><input type="checkbox"> Ready to Ship</label></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Product Cards 3-Col Grid -->
+        <div class="products-3col-grid" id="products-grid">
+          <!-- Populated dynamically via app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       09 SHOP BY MOOD (5 cols, 60vh, Editorial)
+       ============================================================ -->
+  <section class="mood-sec">
+    <div class="mood-grid">
+      <div class="mood-col" onclick="window.currentSearchQuery='Boho'; renderProductGrid(); location.hash='#products-sec';">
+        <img src="img/boho-beach.webp" alt="Bohemian Mood" loading="lazy">
+        <div class="mood-content">
+          <h3>Bohemian</h3>
+          <span class="cta">Shop Edit →</span>
+        </div>
+      </div>
+
+      <div class="mood-col" onclick="window.currentSearchQuery='Ethnic'; renderProductGrid(); location.hash='#products-sec';">
+        <img src="img/noor-kurta.webp" alt="Ethnic Mood" loading="lazy">
+        <div class="mood-content">
+          <h3>Ethnic</h3>
+          <span class="cta">Shop Edit →</span>
+        </div>
+      </div>
+
+      <div class="mood-col" onclick="window.currentSearchQuery='Dresses'; renderProductGrid(); location.hash='#products-sec';">
+        <img src="img/saira-maxi-2.webp" alt="Western Mood" loading="lazy">
+        <div class="mood-content">
+          <h3>Western</h3>
+          <span class="cta">Shop Edit →</span>
+        </div>
+      </div>
+
+      <div class="mood-col" onclick="window.currentSearchQuery='Festive'; renderProductGrid(); location.hash='#products-sec';">
+        <img src="img/lehenga-editorial.jpg" alt="Occasion Mood" loading="lazy">
+        <div class="mood-content">
+          <h3>Occasion</h3>
+          <span class="cta">Shop Edit →</span>
+        </div>
+      </div>
+
+      <div class="mood-col" onclick="window.currentSearchQuery='Rozana'; renderProductGrid(); location.hash='#products-sec';">
+        <img src="img/saira-maxi-1.webp" alt="Everyday Mood" loading="lazy">
+        <div class="mood-content">
+          <h3>Everyday</h3>
+          <span class="cta">Shop Edit →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       10 EDITORIAL STORY (96px pad, 2-Col Alt)
+       ============================================================ -->
+  <section class="story-sec" id="editorial-story">
+    <div class="wrap story-grid">
+      <div class="story-text">
+        <span class="kicker text-gold">THE NEW SURBHEE</span>
+        <h2>Where heritage meets<br><span class="sub-serif">modern femininity.</span></h2>
+        <div class="story-divider"></div>
+        <p class="story-desc">
+          Founded on the ethos of *Bohemian Soul, Indian Heart*, Label Surbhee was born amidst the hand-block printing courtyards of Jaipur and curated for the contemporary woman in Mumbai. Each garment passes through the hands of multi-generational karigars, reviving slow vegetable dyeing, intricate dabka embroidery, and 24k gold-plated filigree.
+        </p>
+        <div class="story-stats-grid">
+          <div class="stat-item">
+            <h4>40+</h4>
+            <p>Master Artisans</p>
+          </div>
+          <div class="stat-item">
+            <h4>12k</h4>
+            <p>Women Empowered</p>
+          </div>
+          <div class="stat-item">
+            <h4>100%</h4>
+            <p>Handcrafted</p>
+          </div>
+        </div>
+        <div>
+          <a href="#footer-contact" class="btn btn-outline-gold">Explore Our Atelier Story →</a>
+        </div>
+      </div>
+
+      <div class="story-image-wrap">
+        <img src="img/about.jpg" alt="Label Surbhee Jaipur Atelier Artisans" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       11 BESTSELLERS (3 cols, 6 products + button)
+       ============================================================ -->
+  <section class="bestsellers-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>MOST COVETED PIECES</h2>
+        <p class="sub-serif">Client favorites loved across Mumbai, Delhi, and worldwide</p>
+      </div>
+
+      <div class="products-3col-grid" id="bestsellers-grid">
+        <!-- Rendered via JS -->
+      </div>
+
+      <div style="margin-top: 40px;">
+        <button class="btn btn-maroon" onclick="window.currentTabFilter='bestsellers'; renderProductGrid(); location.hash='#products-sec';">
+          Shop All Bestsellers →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       12 LOOKBOOK (Vogue massive 80vh real images)
+       ============================================================ -->
+  <section class="lookbook-sec" id="lookbook-sec">
+    <div class="wrap">
+      <div class="lookbook-head">
+        <p>AUTUMN / FESTIVE 2026 EDITORIAL</p>
+        <h2>THE VOGUE LOOKBOOK</h2>
+      </div>
+
+      <div class="lookbook-grid">
+        <div class="lookbook-card" data-action="open-lookbook" data-lookbook-id="boho-edit">
+          <img src="img/boho-beach.webp" alt="The Bohemian Edit" loading="lazy">
+          <div class="lookbook-overlay">
+            <h3>The Bohemian Edit</h3>
+            <p>Sun-drenched hues &amp; breezy silhouettes</p>
+            <span class="btn-sub">View Styling Breakdown →</span>
+          </div>
+        </div>
+
+        <div class="lookbook-card" data-action="open-lookbook" data-lookbook-id="ethnic-edit">
+          <img src="img/noor-kurta.webp" alt="The Ethnic Edit" loading="lazy">
+          <div class="lookbook-overlay">
+            <h3>The Ethnic Edit</h3>
+            <p>Chanderi silks &amp; royal Jaipuri kalis</p>
+            <span class="btn-sub">View Styling Breakdown →</span>
+          </div>
+        </div>
+
+        <div class="lookbook-card" data-action="open-lookbook" data-lookbook-id="after-dark">
+          <img src="img/dress1.jpg" alt="After Dark" loading="lazy">
+          <div class="lookbook-overlay">
+            <h3>After Dark</h3>
+            <p>Midnight velvets &amp; 24k statement pieces</p>
+            <span class="btn-sub">View Styling Breakdown →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       13 WORN BY HER (4 cols square real images)
+       ============================================================ -->
+  <section class="worn-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>WORN BY HER</h2>
+        <p class="sub-serif">Real clients celebrating life in Label Surbhee</p>
+      </div>
+
+      <div class="ugc-grid">
+        <div class="ugc-card">
+          <img src="img/saira-maxi-1.webp" alt="Client in Saira Maxi" loading="lazy">
+          <span class="ugc-tag">@ananya.d in Saira Maxi</span>
+        </div>
+        <div class="ugc-card">
+          <img src="img/noor-kurta.webp" alt="Client in Noor Kurta" loading="lazy">
+          <span class="ugc-tag">@rhea.m in Noor Ensemble</span>
+        </div>
+        <div class="ugc-card">
+          <img src="img/jhumka-gold.webp" alt="Client in Polki Jhumkas" loading="lazy">
+          <span class="ugc-tag">@pooja.s in Jharokha Jhumkas</span>
+        </div>
+        <div class="ugc-card">
+          <img src="img/lehenga-editorial.jpg" alt="Client in Bridal Lehenga" loading="lazy">
+          <span class="ugc-tag">@tara.v in Ayesha Lehenga</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       14 INSTAGRAM FOLLOW THE LABEL (6 grid 1:1)
+       ============================================================ -->
+  <section class="instagram-sec">
+    <div class="wrap" style="margin-bottom: 24px;">
+      <p style="font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold);">ATELIER DISPATCHES</p>
+      <h2 style="font-size:26px;">FOLLOW @LABEL.SURBHEE</h2>
+    </div>
+
+    <div class="wrap">
+      <div class="ig-grid-6">
+        <div class="ig-item"><img src="img/saira-maxi-1.webp" alt="IG 1" loading="lazy"><div class="ig-item-overlay"><span>❤ IG</span></div></div>
+        <div class="ig-item"><img src="img/jhumka-gold.webp" alt="IG 2" loading="lazy"><div class="ig-item-overlay"><span>❤ IG</span></div></div>
+        <div class="ig-item"><img src="img/noor-kurta.webp" alt="IG 3" loading="lazy"><div class="ig-item-overlay"><span>❤ IG</span></div></div>
+        <div class="ig-item"><img src="img/boho-beach.webp" alt="IG 4" loading="lazy"><div class="ig-item-overlay"><span>❤ IG</span></div></div>
+        <div class="ig-item"><img src="img/lehenga-editorial.jpg" alt="IG 5" loading="lazy"><div class="ig-item-overlay"><span>❤ IG</span></div></div>
+        <div class="ig-item"><img src="img/saira-tag.webp" alt="IG 6" loading="lazy"><div class="ig-item-overlay"><span>❤ IG</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       15 NEWSLETTER (Maroon bg, Ivory centered)
+       ============================================================ -->
+  <section class="newsletter-sec">
+    <div class="wrap">
+      <div class="newsletter-box">
+        <span style="font-size:10px; letter-spacing:0.24em; color:var(--gold); text-transform:uppercase;">THE PRIVILEGE CLUB</span>
+        <h2>JOIN THE WORLD OF SURBHEE</h2>
+        <p>Subscribe to receive 10% off your first handcrafted order, private atelier invitations, and bespoke bridal previews.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); showToast('Welcome to Label Surbhee! Use code FIRST10 for 10% off.', '✦');">
+          <input type="email" required placeholder="ENTER YOUR EMAIL ADDRESS">
+          <button type="submit">JOIN</button>
+        </form>
+        <span style="font-size:10.5px; color:rgba(255,251,245,0.6); margin-top:6px;">By signing up you agree to our Terms &amp; Privacy Policy.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       16 FOOTER (6 Cols, #0A0A0A, Trust Strip & Contact)
+       ============================================================ -->
+  <footer class="site-footer" id="footer-contact">
+    <div class="wrap">
+      <div class="footer-main-grid">
+        <div class="footer-col">
+          <h5>SHOP</h5>
+          <ul>
+            <li><a href="#products-sec" onclick="window.currentTabFilter='new'; renderProductGrid();">New Arrivals</a></li>
+            <li><a href="#products-sec" onclick="window.currentTabFilter='dresses'; renderProductGrid();">Clothing</a></li>
+            <li><a href="#products-sec" onclick="window.currentSearchQuery='Lehengas'; renderProductGrid();">Lehengas</a></li>
+            <li><a href="#products-sec" onclick="window.currentTabFilter='jewellery'; renderProductGrid();">Jewellery</a></li>
+            <li><a href="#featured-collections">Collections</a></li>
+            <li><a href="#products-sec" onclick="window.currentTabFilter='bestsellers'; renderProductGrid();">Sale Archive</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>HELP</h5>
+          <ul>
+            <li><a href="#footer-contact">Contact Atelier</a></li>
+            <li><a href="#footer-contact" onclick="showToast('FAQ: All pieces ship with 100% transit insurance from Mumbai.')">FAQ</a></li>
+            <li><a href="#footer-contact" onclick="showToast('Free Express Shipping across India over ₹5,000.')">Shipping Policy</a></li>
+            <li><a href="#footer-contact" onclick="showToast('7-day return policy for unworn apparel with tags intact.')">Returns &amp; Exchange</a></li>
+            <li><button data-action="open-size-guide" style="color:var(--text-ivory-dim); font-size:13px; text-align:left;">Size Guide</button></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>ABOUT</h5>
+          <ul>
+            <li><a href="#editorial-story">About Label Surbhee</a></li>
+            <li><a href="#editorial-story">Our Master Artisans</a></li>
+            <li><a href="#editorial-story">Jaipur Atelier Craft</a></li>
+            <li><a href="#editorial-story">Sustainable Block-Printing</a></li>
+            <li><a href="#editorial-story">Press &amp; Features</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>FOLLOW US</h5>
+          <ul>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://wa.me/917406800003" target="_blank" rel="noopener">WhatsApp Concierge</a></li>
+            <li><a href="https://pinterest.com" target="_blank" rel="noopener">Pinterest Board</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>LEGAL</h5>
+          <ul>
+            <li><a href="#" onclick="showToast('Privacy Policy: All customer data is encrypted.')">Privacy Policy</a></li>
+            <li><a href="#" onclick="showToast('Terms of Service: Handcrafted in India.')">Terms &amp; Conditions</a></li>
+            <li><a href="#" onclick="showToast('Refund Policy: Refunds processed in 5-7 business days.')">Refund Policy</a></li>
+            <li><a href="#" onclick="showToast('Grievance Officer: contact@labelsurbhee.com')">Legal Compliance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col footer-contact-block">
+          <h5>ATELIER &amp; CONTACT</h5>
+          <p>
+            <strong>Shop 4, Irla Road, Vile Parle West</strong><br>
+            Mumbai 400056, Maharashtra<br>
+            Phone: +91 98765 43210<br>
+            WhatsApp: +91 7406800003<br>
+            Email: hello@labelsurbhee.com
+          </p>
+          <form class="footer-mini-form" onsubmit="event.preventDefault(); showToast('Message dispatched to Mumbai atelier desk.', '✓'); this.reset();">
+            <input type="text" placeholder="YOUR NAME" required>
+            <input type="email" placeholder="YOUR EMAIL" required>
+            <textarea rows="2" placeholder="HOW CAN WE ASSIST YOU?" required></textarea>
+            <button type="submit">SEND MESSAGE</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 LABEL SURBHEE PRIVATE LIMITED. ALL RIGHTS RESERVED. HANDCRAFTED IN INDIA.</div>
+        <div class="footer-badges">
+          <span class="status-badge-green"><span class="dot-green"></span> GA CONNECTED</span>
+          <span class="status-badge-green"><span class="dot-green"></span> GSC CONNECTED</span>
+          <span class="status-badge-green"><span class="dot-green"></span> META PIXEL</span>
+          <span class="status-badge-green"><span class="dot-green"></span> 24K GOLD PLATED</span>
+          <span class="status-badge-green"><span class="dot-green"></span> SSL SECURE</span>
+          <span class="status-badge-green"><span class="dot-green"></span> LCP &lt;2.5S</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MOBILE STICKY BOTTOM NAV (Shop, Wishlist, Bag, Account)
+       ============================================================ -->
+  <nav class="mobile-bottom-nav">
+    <a href="#products-sec" class="mob-nav-btn">
+      <svg style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+      <span>Shop</span>
+    </a>
+    <button class="mob-nav-btn" data-action="open-wishlist">
+      <svg style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <span>Wishlist</span>
+    </button>
+    <button class="mob-nav-btn" data-action="open-cart">
+      <svg style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      <span>Bag</span>
+    </button>
+    <button class="mob-nav-btn" data-action="open-account">
+      <svg style="width:18px; height:18px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <span>Account</span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       DRAWERS & MODALS
+       ============================================================ -->
+  <div class="overlay-backdrop" id="modal-backdrop" data-action="close-drawer"></div>
+
+  <!-- CART DRAWER -->
+  <aside class="slide-drawer" id="cart-drawer">
+    <div class="drawer-head">
+      <h3>SHOPPING BAG (<span id="cart-drawer-count">0</span>)</h3>
+      <button class="btn-close-drawer" data-action="close-drawer" aria-label="Close Bag">✕</button>
+    </div>
+
+    <!-- Free Shipping Progress Rail -->
+    <div class="free-ship-bar-wrap">
+      <p class="free-ship-text" id="cart-progress-text">Add ₹5,000 to unlock <strong>Complimentary Insured Shipping</strong></p>
+      <div class="progress-rail">
+        <div class="progress-fill-gold" id="cart-progress-fill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <div class="drawer-body-items" id="cart-items-container">
+      <!-- Populated dynamically via app.js -->
+    </div>
+
+    <div class="drawer-footer">
+      <div class="promo-input-row">
+        <input type="text" id="promo-code-input" placeholder="PROMO CODE (FIRST10, FESTIVE20)">
+        <button data-action="apply-promo">Apply</button>
+      </div>
+
+      <div class="totals-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₹0</span>
+      </div>
+      <div class="totals-row" id="cart-discount-row" style="display:none; color:#12B76A;">
+        <span>Privilege Discount</span>
+        <span id="cart-discount-val">− ₹0</span>
+      </div>
+      <div class="totals-row">
+        <span>Insured Shipping</span>
+        <span id="cart-shipping">₹150</span>
+      </div>
+      <div class="totals-row grand-total">
+        <span>Estimated Total (Incl. GST)</span>
+        <span id="cart-grand-total">₹0</span>
+      </div>
+
+      <button class="btn btn-gold" style="width:100%; margin-top:4px;" data-action="checkout">
+        Proceed to Secure Checkout →
+      </button>
+      <p style="text-align:center; font-size:10px; color:var(--text-muted); letter-spacing:0.1em; text-transform:uppercase;">
+        Complimentary Alterations at Vile Parle Atelier
+      </p>
+    </div>
+  </aside>
+
+  <!-- WISHLIST DRAWER -->
+  <aside class="slide-drawer" id="wishlist-drawer">
+    <div class="drawer-head">
+      <h3>SAVED WISHLIST</h3>
+      <button class="btn-close-drawer" data-action="close-drawer" aria-label="Close Wishlist">✕</button>
+    </div>
+    <div class="drawer-body-items" id="wishlist-items-container">
+      <!-- Populated dynamically -->
+    </div>
+  </aside>
+
+  <!-- ACCOUNT DRAWER (120px tabs left + content right) -->
+  <aside class="slide-drawer" id="account-drawer" style="width: min(640px, 100vw);">
+    <div class="drawer-head">
+      <h3>MY CLIENT ATELIER ACCOUNT</h3>
+      <button class="btn-close-drawer" data-action="close-drawer">✕</button>
+    </div>
+    <div class="account-drawer-content">
+      <div class="account-nav-tabs">
+        <button class="account-tab-btn active" data-tab="overview" onclick="switchAccountTab('overview')">Overview</button>
+        <button class="account-tab-btn" data-tab="orders" onclick="switchAccountTab('orders')">My Orders</button>
+        <button class="account-tab-btn" data-tab="addresses" onclick="switchAccountTab('addresses')">Addresses</button>
+        <button class="account-tab-btn" data-tab="profile" onclick="switchAccountTab('profile')">Profile</button>
+        <button class="account-tab-btn" data-tab="returns" onclick="switchAccountTab('returns')">Returns</button>
+      </div>
+      <div class="account-tab-body" id="account-tab-body">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </aside>
+
+  <!-- PRODUCT DETAIL MODAL (2-Col, Gallery, Tabs) -->
+  <div class="product-modal-dialog" id="product-modal">
+    <button style="position:absolute; top:16px; right:16px; font-size:22px; color:var(--text-muted); z-index:10;" onclick="closeProductModal()">✕</button>
+    <div class="pmodal-grid">
+      <div class="pmodal-gallery">
+        <div class="pmodal-main-img">
+          <img id="pmodal-img-main" src="img/saira-maxi-1.webp" alt="Product detail view">
+        </div>
+        <div class="pmodal-thumbs" id="pmodal-thumbs">
+          <!-- Dynamic thumbs -->
+        </div>
+      </div>
+
+      <div class="pmodal-details">
+        <span style="font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); font-weight:600;" id="pmodal-category">CLOTHING · DRESSES</span>
+        <h2 id="pmodal-title">Saira Boho Maxi Luxe Dress</h2>
+        <p style="font-size:12px; color:var(--text-muted);">✧ 120 Hours Handcraft · Jaipur Workshop · Complimentary Alterations</p>
+        
+        <div style="display:flex; align-items:baseline; gap:12px; margin: 4px 0;">
+          <span style="font-size:22px; font-weight:700; color:var(--maroon);" id="pmodal-price">₹4,850</span>
+          <span style="font-size:14px; text-decoration:line-through; color:var(--text-muted);" id="pmodal-orig-price">₹6,499</span>
+        </div>
+
+        <div id="pmodal-stock-alert" style="display:none; font-size:11px; font-weight:600; color:#B42318;">
+          ✦ Only 2 pieces remaining in stock!
+        </div>
+
+        <p style="font-size:13.5px; line-height:1.7; color:var(--text-body);" id="pmodal-desc">
+          Cut from featherlight hand-spun cotton mulmul, the Saira Maxi embodies our signature Bohemian Soul, Indian Heart ethos.
+        </p>
+
+        <div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-size:11px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600;">SELECT SIZE</span>
+            <button data-action="open-size-guide" style="font-size:11px; color:var(--gold); text-decoration:underline;">Size Guide</button>
+          </div>
+          <div class="size-pills-row" id="pmodal-sizes">
+            <!-- Dynamic sizes -->
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-top:8px;">
+          <button class="btn btn-maroon" style="flex:1;" onclick="addActiveModalToCart()">Add to Bag</button>
+          <button class="btn btn-gold" style="flex:1;" onclick="buyActiveModalNow()">Buy Now</button>
+        </div>
+
+        <div style="margin-top:4px;">
+          <a id="pmodal-wa-link" href="#" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; font-size:11.5px; color:#12B76A;">
+            <span>💬 Need custom sizing? Chat with our bridal concierge on WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- Details Tabs -->
+        <div class="pmodal-tabs">
+          <div class="pmodal-tabs-nav">
+            <button class="pmodal-tab-link active" onclick="setModalTab('details', this)">Details &amp; Craft</button>
+            <button class="pmodal-tab-link" onclick="setModalTab('care', this)">Fabric &amp; Care</button>
+            <button class="pmodal-tab-link" onclick="setModalTab('shipping', this)">Shipping &amp; Returns</button>
+          </div>
+          <div class="pmodal-tab-pane" id="pmodal-pane-details">
+            Hand-block printed using natural plant dyes · Tiered sweep hemline with slow embroidery · Gentle elasticated waist with beaded drawstrings · Fully lined in 100% mulmul
+          </div>
+          <div class="pmodal-tab-pane" id="pmodal-pane-care" style="display:none;">
+            Dry clean recommended for first wash · Thereafter cold gentle hand wash inside out · Dry in shade · Warm iron
+          </div>
+          <div class="pmodal-tab-pane" id="pmodal-pane-shipping" style="display:none;">
+            Dispatched in 24 hours · Delivered in 3-5 business days across India · Complimentary alterations at our Vile Parle West boutique
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIZE GUIDE MODAL -->
+  <div class="product-modal-dialog" id="size-guide-modal" style="width: min(560px, 92vw);">
+    <div style="padding: 28px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:20px; color:var(--maroon);">LABEL SURBHEE SIZE GUIDE</h3>
+        <button style="font-size:20px; color:var(--text-muted);" data-action="close-size-guide">✕</button>
+      </div>
+      <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:16px;">All measurements are in inches. Complimentary bespoke alterations at our Vile Parle West boutique.</p>
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Bust</th>
+            <th>Waist</th>
+            <th>Hip</th>
+            <th>Length</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>XS</strong></td><td>32"</td><td>26"</td><td>35"</td><td>52"</td></tr>
+          <tr><td><strong>S</strong></td><td>34"</td><td>28"</td><td>37"</td><td>52"</td></tr>
+          <tr><td><strong>M</strong></td><td>36"</td><td>30"</td><td>39"</td><td>53"</td></tr>
+          <tr><td><strong>L</strong></td><td>38"</td><td>32"</td><td>41"</td><td>53"</td></tr>
+          <tr><td><strong>XL</strong></td><td>40"</td><td>34"</td><td>43"</td><td>54"</td></tr>
+          <tr><td><strong>XXL</strong></td><td>42"</td><td>36"</td><td>45"</td><td>54"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LOOKBOOK BREAKDOWN MODAL -->
+  <div class="product-modal-dialog" id="lookbook-modal" style="width: min(640px, 94vw);">
+    <div style="padding: 28px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div>
+          <h3 style="font-size:22px; color:var(--maroon);" id="lookbook-modal-title">Lookbook Edit</h3>
+          <p style="font-size:12px; color:var(--text-muted);" id="lookbook-modal-sub">Artisan ensemble breakdown</p>
+        </div>
+        <button style="font-size:20px; color:var(--text-muted);" data-action="close-lookbook">✕</button>
+      </div>
+      <div id="lookbook-modal-items" style="display:flex; flex-direction:column; gap:16px; margin-top:20px;">
+        <!-- Dynamic lookbook items -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN MASTER PANEL (Full Sellable CRUD) -->
+  <div class="admin-modal-dialog" id="admin-modal">
+    <div class="admin-header">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <h3>LABEL SURBHEE ADMIN PORTAL</h3>
+        <span class="status-badge-green"><span class="dot-green"></span> LIVE DEMO MODE</span>
+      </div>
+      <button style="color:var(--text-ivory); font-size:20px;" data-action="close-admin">✕</button>
+    </div>
+    <div class="admin-body">
+      <div class="admin-sidebar">
+        <button class="admin-nav-item active" data-view="overview" onclick="renderAdminView('overview')">Dashboard</button>
+        <button class="admin-nav-item" data-view="products" onclick="renderAdminView('products')">Product Manager</button>
+        <button class="admin-nav-item" data-view="add-product" onclick="renderAdminView('add-product')">+ Add Product</button>
+        <button class="admin-nav-item" data-view="orders" onclick="renderAdminView('orders')">Orders Dispatch</button>
+        <button class="admin-nav-item" data-view="discounts" onclick="renderAdminView('discounts')">Privilege Codes</button>
+        <button class="admin-nav-item" data-view="data" onclick="renderAdminView('data')">Backup &amp; Export</button>
+      </div>
+      <div class="admin-content-pane" id="admin-content-pane">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING WHATSAPP BUTTON (Gold circle #C9A86A) -->
+  <a class="floating-wa-btn" href="https://wa.me/917406800003?text=Need%20help%3F%20Chat%20with%20us" target="_blank" rel="noopener" aria-label="WhatsApp Concierge">
+    <svg style="width:26px; height:26px;" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.217 8.217 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.24-8.24m4.52 11.64c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.59.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z"></path></svg>
+    <div class="floating-wa-tooltip">Need help? Chat with us</div>
+  </a>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Core Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

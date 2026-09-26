@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="12" fill="#2b0811"/>
+  <rect x="2.5" y="2.5" width="59" height="59" rx="10" fill="none" stroke="#c9a24b" stroke-width="1.5" opacity="0.7"/>
+  <g font-family="Georgia, 'Times New Roman', serif" fill="#e2c27e" text-anchor="middle">
+    <text x="32" y="42" font-size="28" letter-spacing="1">LS</text>
+    <text x="32" y="54" font-size="7" letter-spacing="2" fill="#c9a24b" opacity="0.85">EST. 2026</text>
+  </g>
+</svg>

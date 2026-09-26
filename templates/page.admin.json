@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "admin", "settings": {} }
+  },
+  "order": ["main"]
+}

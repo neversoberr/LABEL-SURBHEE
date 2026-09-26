@@ -110,8 +110,14 @@ Content → Pages → Add page, once per file:
 | Contact | `contact` | `page.contact` | **leave blank** (template renders form) |
 | FAQ | `faq` | `page.faq` | **leave blank** (template renders questions) |
 | My Wishlist | `wishlist` | `page.wishlist` | **leave blank** (JS renders grid) |
+| Admin (staff only) | `admin` | `page.admin` | **leave blank** (server-side `admin` customer tag + PIN/OTP gate) |
 
 Use the `<>` (HTML) button in the content editor when pasting.
+
+> The Admin page is shown **only** to signed-in customers tagged `admin`;
+> everyone else sees an access-denied screen. See
+> `docs/HOW-TO-ADD-PRODUCTS-SALE.md` §F for the one-time setup (customer tag
+> + `page.admin` template + Webmaster PIN/OTP theme settings).
 
 ### 4 · Menus — `import/menus.md`
 

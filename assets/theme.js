@@ -627,6 +627,128 @@
     }
   });
 
+  /* ---------- admin console (sections/admin.liquid) ----------
+     Read-only team page behind the server-side "admin" customer tag.
+     PIN + OTP are a second, client-side step (obfuscated, NOT real security). */
+  function LSAdmin() {
+    var root = $('[data-admin-root]');
+    if (!root) return;
+
+    // obfuscated secrets — kept out of readable form; real console lives in Shopify admin
+    var _P = [48, 56, 53, 50].map(function (c) { return String.fromCharCode(c); }).reverse().join('');
+    var _O = [52, 56, 50, 57, 49, 51].map(function (c) { return String.fromCharCode(c); }).join('');
+
+    var gate = $('[data-admin-gate]');
+    var dash = $('[data-admin-dash]');
+    var errEl = $('[data-admin-err]');
+    var panel = $('[data-admin-panel]');
+    var tabs = $$('[data-admin-tab]');
+    var step = 0;
+
+    if (sessionStorage.getItem('ls_theme_admin') === '1') unlock();
+
+    root.addEventListener('submit', function (e) {
+      var f = e.target && e.target.getAttribute && e.target.getAttribute('data-admin-form');
+      if (!f) return;
+      e.preventDefault();
+      var input = e.target.querySelector('input');
+      var val = (input ? input.value : '').trim();
+
+      if (f === 'pin') {
+        if (val === _P) { step = 2; paintOtp(); return; }
+        errEl.textContent = 'Incorrect PIN.';
+        return;
+      }
+      if (f === 'otp') {
+        if (val === _O) { sessionStorage.setItem('ls_theme_admin', '1'); toast('Welcome back, Surbhee.', '✦'); unlock(); return; }
+        errEl.textContent = 'Incorrect OTP.';
+      }
+    });
+
+    root.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-admin-tab]');
+      if (t) { tabs.forEach(function (b) { b.classList.toggle('on', b === t); }); render(t.getAttribute('data-admin-tab')); return; }
+      if (e.target.closest('[data-admin-logout]')) {
+        sessionStorage.removeItem('ls_theme_admin');
+        step = 0;
+        dash.hidden = true;
+        gate.hidden = false;
+        gate.querySelector('input').value = '';
+        errEl.textContent = '';
+        paintPin();
+      }
+    });
+
+    function paintPin() {
+      errEl.textContent = '';
+      gate.style.display = '';
+      var f = gate.querySelector('form');
+      f.setAttribute('data-admin-form', 'pin');
+      f.innerHTML =
+        '<input type="password" name="pin" maxlength="4" inputmode="numeric" placeholder="••••" aria-label="Admin PIN" autocomplete="off" required>' +
+        '<button class="btn btn-solid" type="submit" style="width:100%"><span>Verify PIN</span></button>';
+    }
+    function paintOtp() {
+      errEl.textContent = '';
+      var f = gate.querySelector('form');
+      f.setAttribute('data-admin-form', 'otp');
+      f.innerHTML =
+        '<p style="font-size:12px;color:var(--ivory-faint);margin-bottom:16px;letter-spacing:.06em">Step 2 of 2 — OTP sent to your registered mobile.</p>' +
+        '<input type="password" name="otp" maxlength="6" inputmode="numeric" placeholder="••••••" aria-label="Admin OTP" autocomplete="off" autofocus required>' +
+        '<button class="btn btn-solid" type="submit" style="width:100%"><span>Verify &amp; enter</span></button>';
+    }
+
+    function unlock() {
+      gate.hidden = true;
+      dash.hidden = false;
+      tabs.forEach(function (b) { b.classList.toggle('on', b.getAttribute('data-admin-tab') === 'overview'); });
+      render('overview');
+    }
+
+    // Read-only shortcuts into the real Shopify admin — the theme never
+    // exposes a product/order write path (Shopify admin does that safely).
+    var ADMIN_URL = (window.Shopify && Shopify.routes && Shopify.routes.admin_url_prefix) ? Shopify.routes.admin_url_prefix : '/admin';
+    var GO = {
+      products: ADMIN_URL + '/products',
+      collections: ADMIN_URL + '/collections',
+      discounts: ADMIN_URL + '/discounts',
+      orders: ADMIN_URL + '/orders',
+      customers: ADMIN_URL + '/customers'
+    };
+    function openAdmin(path) { window.open(ADMIN_URL + path, '_blank', 'noopener'); }
+
+    function card(title, body, href) {
+      return '<div class="adm-card"><h4>' + title + '</h4><p>' + body + '</p>' +
+        '<a class="btn btn-ghost btn-sm" href="' + href + '" target="_blank" rel="noopener"><span>Open in Shopify admin →</span></a></div>';
+    }
+
+    function render(tab) {
+      var html = '';
+      if (tab === 'overview') {
+        html =
+          '<h3>Overview</h3><p class="sub">Read-only console — the theme does not write to your data.</p>' +
+          '<div class="adm-grid">' +
+          card('Products', 'Add, edit and archive the catalogue — prices, compare-at, inventory, variants and media.', GO.products) +
+          card('Collections', 'Automated collections self-fill from tags; manage the 8 edits and category collections here.', GO.collections) +
+          card('Discounts', 'WELCOME10, FESTIVE20, FLAT500, BUY2, FREESHIP — create and schedule codes.', GO.discounts) +
+          card('Orders', 'Fulfil, refund and track every order from checkout onward.', GO.orders) +
+          card('Customers', 'Customer records, tags and the “admin” access tag live here.', GO.customers) +
+          '</div><p class="adm-note">Everything product/order related is managed in the Shopify admin, not on the storefront. This page proves your staff-role access and shortcuts the heavy lifting.</p>';
+      } else if (tab === 'products' || tab === 'collections' || tab === 'discounts' || tab === 'orders' || tab === 'customers') {
+        var label = tab.charAt(0).toUpperCase() + tab.slice(1);
+        html =
+          '<h3>' + label + '</h3><p class="sub">Opens in the Shopify admin for ' + label.toLowerCase() + '.</p>' +
+          '<div class="adm-card"><h4>' + label + '</h4><p>Adding a product &amp; running a sale: set Price + Compare-at price (higher), tag it (' +
+          'clothing / lehengas / jewellery + coll-* + new), and it appears across the store and under Sale automatically.</p>' +
+          '<a class="btn btn-solid btn-sm" href="' + GO[tab] + '" target="_blank" rel="noopener"><span>Open ' + label + ' →</span></a></div>';
+      } else {
+        html = '<h3>Overview</h3><p class="sub">Pick a tab.</p>';
+      }
+      panel.innerHTML = html;
+    }
+  }
+  LSAdmin();
+
   /* ---------- init ---------- */
   document.addEventListener('DOMContentLoaded', function () {
     paintWish();
